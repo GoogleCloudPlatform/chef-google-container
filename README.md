@@ -32,6 +32,7 @@ end
 
 gcontainer_cluster 'test-cluster' do
   action :create
+  initial_node_count 4
   zone 'us-central1-a'
   project 'google.com:graphite-playground'
   credential 'mycred'
@@ -39,7 +40,6 @@ end
 
 gcontainer_node_pool 'web-servers' do
   action :create
-  initial_node_count 4
   cluster 'test-cluster'
   zone 'us-central1-a'
   project 'google.com:graphite-playground'
