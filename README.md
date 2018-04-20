@@ -82,6 +82,8 @@ For complete details of the authentication cookbook, visit the
     reference
     them during pod scheduling. They may also be resized up or down, to
     accommodate the workload.
+* [`gcontainer_kube_config`](#gcontainer_kube_config) -
+    Generates a compatible Kuberenetes '.kube/config' file
 
 
 ### gcontainer_cluster
@@ -186,11 +188,9 @@ end
 
 * `name` -
   The name of this cluster. The name must be unique within this project
-  and zone, and can be up to 40 characters with the following
-  restrictions:
-  * Lowercase letters, numbers, and hyphens only.
-  * Must start with a letter.
-  * Must end with a number or a letter.
+  and zone, and can be up to 40 characters. Must be Lowercase letters,
+  numbers, and hyphens only. Must start with a letter. Must end with a
+  number or a letter.
 
 * `description` -
   An optional description of this cluster.
@@ -229,9 +229,9 @@ end
   node VMs under the "default" service account.
   The following scopes are recommended, but not required, and by
   default are not included:
-  * https://www.googleapis.com/auth/compute is required for mounting
+  https://www.googleapis.com/auth/compute is required for mounting
   persistent storage on your nodes.
-  * https://www.googleapis.com/auth/devstorage.read_only is required
+  https://www.googleapis.com/auth/devstorage.read_only is required
   for communicating with gcr.io (the Google Container Registry).
   If unspecified, no scopes are added, unless Cloud Logging or Cloud
   Monitoring are enabled, in which case their required scopes will
@@ -322,21 +322,21 @@ end
 * `logging_service` -
   The logging service the cluster should use to write logs. Currently
   available options:
-  * logging.googleapis.com - the Google Cloud Logging service.
-  * none - no logs will be exported from the cluster.
+  logging.googleapis.com - the Google Cloud Logging service.
+  none - no logs will be exported from the cluster.
   if left as an empty string,logging.googleapis.com will be used.
 
 * `monitoring_service` -
   The monitoring service the cluster should use to write metrics.
   Currently available options:
-  * monitoring.googleapis.com - the Google Cloud Monitoring service.
-  * none - no metrics will be exported from the cluster.
+  monitoring.googleapis.com - the Google Cloud Monitoring service.
+  none - no metrics will be exported from the cluster.
   if left as an empty string, monitoring.googleapis.com will be used.
 
 * `network` -
   The name of the Google Compute Engine network to which the cluster is
   connected. If left unspecified, the default network will be used.
-  * Tip: To ensure it exists and it is operations, configure the network
+  To ensure it exists and it is operations, configure the network
   using 'gcompute_network' resource.
 
 * `cluster_ipv4_cidr` -
@@ -531,9 +531,9 @@ end
   node VMs under the "default" service account.
   The following scopes are recommended, but not required, and by
   default are not included:
-  * https://www.googleapis.com/auth/compute is required for mounting
+  https://www.googleapis.com/auth/compute is required for mounting
   persistent storage on your nodes.
-  * https://www.googleapis.com/auth/devstorage.read_only is required
+  https://www.googleapis.com/auth/devstorage.read_only is required
   for communicating with gcr.io (the Google Container Registry).
   If unspecified, no scopes are added, unless Cloud Logging or Cloud
   Monitoring are enabled, in which case their required scopes will
@@ -654,6 +654,60 @@ end
 
 #### Label
 Set the `np_label` property when attempting to set primary key
+of this object. The primary key will always be referred to by the initials of
+the resource followed by "_label"
+
+### gcontainer_kube_config
+Generates a compatible Kuberenetes '.kube/config' file
+
+
+#### Example
+
+```ruby
+
+# TODO(rambleraptor): Add kube_config example here.
+
+```
+
+#### Reference
+
+```ruby
+gcontainer_kube_config 'id-for-resource' do
+  cluster    reference to gcontainer_cluster
+  context    string
+  name       string
+  zone       string
+  project    string
+  credential reference to gauth_credential
+end
+```
+
+#### Actions
+
+* `create` -
+  Converges the `gcontainer_kube_config` resource into the final
+  state described within the block. If the resource does not exist, Chef will
+  attempt to create it.
+* `delete` -
+  Ensures the `gcontainer_kube_config` resource is not present.
+  If the resource already exists Chef will attempt to delete it.
+
+#### Properties
+
+* `name` -
+  Required. The config file kubectl settings will be written to.
+
+* `cluster` -
+  Required. A reference to Cluster resource
+
+* `zone` -
+  Required. The zone where the container is deployed
+
+* `context` -
+  Required. The name of the context. Defaults to cluster name.
+
+#### Label
+Set the `kc_label` property when attempting to set primary key
 of this object. The primary key will always be referred to by the initials of
 the resource followed by "_label"
 
