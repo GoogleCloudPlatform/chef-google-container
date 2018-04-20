@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -48,7 +48,7 @@ require 'spec_helper'
 # +--------------------------------------------------------+
 # TODO(alexstephen): Add tests for manage
 # TODO(alexstephen): Add tests for modify
-context 'gcontainer_node_pool' do
+context 'gcontainer_kube_config' do
   context 'ensure == present' do
     context 'resource exists' do
       # Ensure present: resource exists, no change
@@ -61,15 +61,9 @@ context 'gcontainer_node_pool' do
               allow(Time).to receive(:now).and_return(
                 Time.new(2017, 1, 2, 3, 4, 5)
               )
-              expect_network_get_success 1,
-                                         name: 'title0',
-                                         cluster: 'test name#0 data'
-              expect_network_get_success 2,
-                                         name: 'title1',
-                                         cluster: 'test name#1 data'
-              expect_network_get_success 3,
-                                         name: 'title2',
-                                         cluster: 'test name#2 data'
+              expect_network_get_success 1, name: 'title0'
+              expect_network_get_success 2, name: 'title1'
+              expect_network_get_success 3, name: 'title2'
               expect_network_get_success_cluster 1
               expect_network_get_success_cluster 2
               expect_network_get_success_cluster 3
@@ -93,7 +87,7 @@ context 'gcontainer_node_pool' do
                 cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
               end
               ChefSpec::SoloRunner.new(
-                step_into: %w[gcontainer_node_pool gcontainer_cluster],
+                step_into: %w[gcontainer_kube_config gcontainer_cluster],
                 cookbook_path: cookbook_paths,
                 platform: 'ubuntu',
                 version: '16.04'
@@ -130,129 +124,28 @@ context 'gcontainer_node_pool' do
                     credential 'mycred'
                   end
 
-                  gcontainer_node_pool 'title0' do
+                  gcontainer_kube_config 'title0' do
                     action :create
-                    autoscaling({
-                      enabled: true,
-                      max_node_count: 39920247,
-                      min_node_count: 1663550365
-                    })
                     cluster 'resource(cluster,0)'
-                    config({
-                      disk_size_gb: 450092159,
-                      image_type: 'test image_type#0 data',
-                      labels: {
-                        'test labels#1 data' => 'test labels#1 data',
-                        'test labels#2 data' => 6131251034
-                      },
-                      local_ssd_count: 1751176017,
-                      machine_type: 'test machine_type#0 data',
-                      metadata: {
-                        'test metadata#1 data' => 'test metadata#1 data',
-                        'test metadata#2 data' => 2666715473,
-                        'test metadata#3 data' => 'test metadata#3 data'
-                      },
-                      oauth_scopes: ['ww', 'xx', 'yy', 'zz'],
-                      preemptible: true,
-                      service_account: 'test service_account#0 data',
-                      tags: ['mm', 'nn', 'oo', 'pp']
-                    })
-                    initial_node_count 1911672831
-                    management({
-                      auto_repair: true,
-                      auto_upgrade: true,
-                      upgrade_options: {
-                        auto_upgrade_start_time: '2014-10-31T08:37:14+00:00',
-                        description: 'test description#0 data'
-                      }
-                    })
+                    context 'test context#0 data'
                     zone 'test zone#0 data'
                     project 'test project#0 data'
                     credential 'mycred'
                   end
 
-                  gcontainer_node_pool 'title1' do
+                  gcontainer_kube_config 'title1' do
                     action :create
-                    autoscaling({
-                      enabled: false,
-                      max_node_count: 79840495,
-                      min_node_count: 3327100730
-                    })
                     cluster 'resource(cluster,1)'
-                    config({
-                      disk_size_gb: 900184319,
-                      image_type: 'test image_type#1 data',
-                      labels: {
-                        'test labels#2 data' => 'test labels#2 data',
-                        'test labels#3 data' => 8175001379,
-                        'test labels#4 data' => 'test labels#4 data'
-                      },
-                      local_ssd_count: 3502352035,
-                      machine_type: 'test machine_type#1 data',
-                      metadata: {
-                        'test metadata#2 data' => 'test metadata#2 data',
-                        'test metadata#3 data' => 3555620630,
-                        'test metadata#4 data' => 'test metadata#4 data',
-                        'test metadata#5 data' => 5333430946,
-                        'test metadata#6 data' => 'test metadata#6 data'
-                      },
-                      oauth_scopes: ['xx', 'yy', 'zz'],
-                      preemptible: false,
-                      service_account: 'test service_account#1 data',
-                      tags: ['bb', 'cc', 'dd']
-                    })
-                    initial_node_count 3823345662
-                    management({
-                      auto_repair: false,
-                      auto_upgrade: false,
-                      upgrade_options: {
-                        auto_upgrade_start_time: '2059-08-30T17:14:29+00:00',
-                        description: 'test description#1 data'
-                      }
-                    })
+                    context 'test context#1 data'
                     zone 'test zone#1 data'
                     project 'test project#1 data'
                     credential 'mycred'
                   end
 
-                  gcontainer_node_pool 'title2' do
+                  gcontainer_kube_config 'title2' do
                     action :create
-                    autoscaling({
-                      enabled: true,
-                      max_node_count: 119760742,
-                      min_node_count: 4990651095
-                    })
                     cluster 'resource(cluster,2)'
-                    config({
-                      disk_size_gb: 1350276479,
-                      image_type: 'test image_type#2 data',
-                      labels: {
-                        'test labels#3 data' => 'test labels#3 data',
-                        'test labels#4 data' => 10218751724,
-                        'test labels#5 data' => 'test labels#5 data',
-                        'test labels#6 data' => 14306252413
-                      },
-                      local_ssd_count: 5253528053,
-                      machine_type: 'test machine_type#2 data',
-                      metadata: {
-                        'test metadata#3 data' => 'test metadata#3 data',
-                        'test metadata#4 data' => 4444525788,
-                        'test metadata#5 data' => 'test metadata#5 data'
-                      },
-                      oauth_scopes: ['yy', 'zz'],
-                      preemptible: true,
-                      service_account: 'test service_account#2 data',
-                      tags: ['qq', 'rr']
-                    })
-                    initial_node_count 5735018494
-                    management({
-                      auto_repair: true,
-                      auto_upgrade: true,
-                      upgrade_options: {
-                        auto_upgrade_start_time: '2104-06-30T01:51:43+00:00',
-                        description: 'test description#2 data'
-                      }
-                    })
+                    context 'test context#2 data'
                     zone 'test zone#2 data'
                     project 'test project#2 data'
                     credential 'mycred'
@@ -267,32 +160,12 @@ context 'gcontainer_node_pool' do
               end
             end
 
-            context 'gcontainer_node_pool[title0]' do
+            context 'gcontainer_kube_config[title0]' do
               subject do
-                chef_run.find_resource(:gcontainer_node_pool, 'title0')
+                chef_run.find_resource(:gcontainer_kube_config, 'title0')
               end
 
-              it { is_expected.to have_attributes(np_label: 'title0') }
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'config' do
-              #   # Add test code here
-              # end
-
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'autoscaling' do
-              #   # Add test code here
-              # end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'management' do
-              #   # Add test code here
-              # end
+              it { is_expected.to have_attributes(kc_label: 'title0') }
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -300,34 +173,18 @@ context 'gcontainer_node_pool' do
               # end
 
               it { is_expected.to have_attributes(zone: 'test zone#0 data') }
-            end
-
-            context 'gcontainer_node_pool[title1]' do
-              subject do
-                chef_run.find_resource(:gcontainer_node_pool, 'title1')
-              end
-
-              it { is_expected.to have_attributes(np_label: 'title1') }
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'config' do
-              #   # Add test code here
-              # end
 
               it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
+                is_expected.to have_attributes(context: 'test context#0 data')
+              end
+            end
+
+            context 'gcontainer_kube_config[title1]' do
+              subject do
+                chef_run.find_resource(:gcontainer_kube_config, 'title1')
               end
 
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'autoscaling' do
-              #   # Add test code here
-              # end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'management' do
-              #   # Add test code here
-              # end
+              it { is_expected.to have_attributes(kc_label: 'title1') }
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -335,34 +192,18 @@ context 'gcontainer_node_pool' do
               # end
 
               it { is_expected.to have_attributes(zone: 'test zone#1 data') }
-            end
-
-            context 'gcontainer_node_pool[title2]' do
-              subject do
-                chef_run.find_resource(:gcontainer_node_pool, 'title2')
-              end
-
-              it { is_expected.to have_attributes(np_label: 'title2') }
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'config' do
-              #   # Add test code here
-              # end
 
               it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
+                is_expected.to have_attributes(context: 'test context#1 data')
+              end
+            end
+
+            context 'gcontainer_kube_config[title2]' do
+              subject do
+                chef_run.find_resource(:gcontainer_kube_config, 'title2')
               end
 
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'autoscaling' do
-              #   # Add test code here
-              # end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'management' do
-              #   # Add test code here
-              # end
+              it { is_expected.to have_attributes(kc_label: 'title2') }
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -370,6 +211,10 @@ context 'gcontainer_node_pool' do
               # end
 
               it { is_expected.to have_attributes(zone: 'test zone#2 data') }
+
+              it do
+                is_expected.to have_attributes(context: 'test context#2 data')
+              end
             end
           end
 
@@ -389,9 +234,9 @@ context 'gcontainer_node_pool' do
               allow(Time).to receive(:now).and_return(
                 Time.new(2017, 1, 2, 3, 4, 5)
               )
-              expect_network_get_success 1, cluster: 'test name#0 data'
-              expect_network_get_success 2, cluster: 'test name#1 data'
-              expect_network_get_success 3, cluster: 'test name#2 data'
+              expect_network_get_success 1
+              expect_network_get_success 2
+              expect_network_get_success 3
               expect_network_get_success_cluster 1
               expect_network_get_success_cluster 2
               expect_network_get_success_cluster 3
@@ -415,7 +260,7 @@ context 'gcontainer_node_pool' do
                 cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
               end
               ChefSpec::SoloRunner.new(
-                step_into: %w[gcontainer_node_pool gcontainer_cluster],
+                step_into: %w[gcontainer_kube_config gcontainer_cluster],
                 cookbook_path: cookbook_paths,
                 platform: 'ubuntu',
                 version: '16.04'
@@ -452,132 +297,31 @@ context 'gcontainer_node_pool' do
                     credential 'mycred'
                   end
 
-                  gcontainer_node_pool 'title0' do
+                  gcontainer_kube_config 'title0' do
                     action :create
-                    autoscaling({
-                      enabled: true,
-                      max_node_count: 39920247,
-                      min_node_count: 1663550365
-                    })
                     cluster 'resource(cluster,0)'
-                    config({
-                      disk_size_gb: 450092159,
-                      image_type: 'test image_type#0 data',
-                      labels: {
-                        'test labels#1 data' => 'test labels#1 data',
-                        'test labels#2 data' => 6131251034
-                      },
-                      local_ssd_count: 1751176017,
-                      machine_type: 'test machine_type#0 data',
-                      metadata: {
-                        'test metadata#1 data' => 'test metadata#1 data',
-                        'test metadata#2 data' => 2666715473,
-                        'test metadata#3 data' => 'test metadata#3 data'
-                      },
-                      oauth_scopes: ['ww', 'xx', 'yy', 'zz'],
-                      preemptible: true,
-                      service_account: 'test service_account#0 data',
-                      tags: ['mm', 'nn', 'oo', 'pp']
-                    })
-                    initial_node_count 1911672831
-                    management({
-                      auto_repair: true,
-                      auto_upgrade: true,
-                      upgrade_options: {
-                        auto_upgrade_start_time: '2014-10-31T08:37:14+00:00',
-                        description: 'test description#0 data'
-                      }
-                    })
-                    np_label 'test name#0 data'
+                    context 'test context#0 data'
+                    kc_label 'test name#0 data'
                     zone 'test zone#0 data'
                     project 'test project#0 data'
                     credential 'mycred'
                   end
 
-                  gcontainer_node_pool 'title1' do
+                  gcontainer_kube_config 'title1' do
                     action :create
-                    autoscaling({
-                      enabled: false,
-                      max_node_count: 79840495,
-                      min_node_count: 3327100730
-                    })
                     cluster 'resource(cluster,1)'
-                    config({
-                      disk_size_gb: 900184319,
-                      image_type: 'test image_type#1 data',
-                      labels: {
-                        'test labels#2 data' => 'test labels#2 data',
-                        'test labels#3 data' => 8175001379,
-                        'test labels#4 data' => 'test labels#4 data'
-                      },
-                      local_ssd_count: 3502352035,
-                      machine_type: 'test machine_type#1 data',
-                      metadata: {
-                        'test metadata#2 data' => 'test metadata#2 data',
-                        'test metadata#3 data' => 3555620630,
-                        'test metadata#4 data' => 'test metadata#4 data',
-                        'test metadata#5 data' => 5333430946,
-                        'test metadata#6 data' => 'test metadata#6 data'
-                      },
-                      oauth_scopes: ['xx', 'yy', 'zz'],
-                      preemptible: false,
-                      service_account: 'test service_account#1 data',
-                      tags: ['bb', 'cc', 'dd']
-                    })
-                    initial_node_count 3823345662
-                    management({
-                      auto_repair: false,
-                      auto_upgrade: false,
-                      upgrade_options: {
-                        auto_upgrade_start_time: '2059-08-30T17:14:29+00:00',
-                        description: 'test description#1 data'
-                      }
-                    })
-                    np_label 'test name#1 data'
+                    context 'test context#1 data'
+                    kc_label 'test name#1 data'
                     zone 'test zone#1 data'
                     project 'test project#1 data'
                     credential 'mycred'
                   end
 
-                  gcontainer_node_pool 'title2' do
+                  gcontainer_kube_config 'title2' do
                     action :create
-                    autoscaling({
-                      enabled: true,
-                      max_node_count: 119760742,
-                      min_node_count: 4990651095
-                    })
                     cluster 'resource(cluster,2)'
-                    config({
-                      disk_size_gb: 1350276479,
-                      image_type: 'test image_type#2 data',
-                      labels: {
-                        'test labels#3 data' => 'test labels#3 data',
-                        'test labels#4 data' => 10218751724,
-                        'test labels#5 data' => 'test labels#5 data',
-                        'test labels#6 data' => 14306252413
-                      },
-                      local_ssd_count: 5253528053,
-                      machine_type: 'test machine_type#2 data',
-                      metadata: {
-                        'test metadata#3 data' => 'test metadata#3 data',
-                        'test metadata#4 data' => 4444525788,
-                        'test metadata#5 data' => 'test metadata#5 data'
-                      },
-                      oauth_scopes: ['yy', 'zz'],
-                      preemptible: true,
-                      service_account: 'test service_account#2 data',
-                      tags: ['qq', 'rr']
-                    })
-                    initial_node_count 5735018494
-                    management({
-                      auto_repair: true,
-                      auto_upgrade: true,
-                      upgrade_options: {
-                        auto_upgrade_start_time: '2104-06-30T01:51:43+00:00',
-                        description: 'test description#2 data'
-                      }
-                    })
-                    np_label 'test name#2 data'
+                    context 'test context#2 data'
+                    kc_label 'test name#2 data'
                     zone 'test zone#2 data'
                     project 'test project#2 data'
                     credential 'mycred'
@@ -592,34 +336,14 @@ context 'gcontainer_node_pool' do
               end
             end
 
-            context 'gcontainer_node_pool[title0]' do
+            context 'gcontainer_kube_config[title0]' do
               subject do
-                chef_run.find_resource(:gcontainer_node_pool, 'title0')
+                chef_run.find_resource(:gcontainer_kube_config, 'title0')
               end
 
               it do
-                is_expected.to have_attributes(np_label: 'test name#0 data')
+                is_expected.to have_attributes(kc_label: 'test name#0 data')
               end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'config' do
-              #   # Add test code here
-              # end
-
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'autoscaling' do
-              #   # Add test code here
-              # end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'management' do
-              #   # Add test code here
-              # end
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -627,36 +351,20 @@ context 'gcontainer_node_pool' do
               # end
 
               it { is_expected.to have_attributes(zone: 'test zone#0 data') }
+
+              it do
+                is_expected.to have_attributes(context: 'test context#0 data')
+              end
             end
 
-            context 'gcontainer_node_pool[title1]' do
+            context 'gcontainer_kube_config[title1]' do
               subject do
-                chef_run.find_resource(:gcontainer_node_pool, 'title1')
+                chef_run.find_resource(:gcontainer_kube_config, 'title1')
               end
 
               it do
-                is_expected.to have_attributes(np_label: 'test name#1 data')
+                is_expected.to have_attributes(kc_label: 'test name#1 data')
               end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'config' do
-              #   # Add test code here
-              # end
-
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'autoscaling' do
-              #   # Add test code here
-              # end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'management' do
-              #   # Add test code here
-              # end
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -664,36 +372,20 @@ context 'gcontainer_node_pool' do
               # end
 
               it { is_expected.to have_attributes(zone: 'test zone#1 data') }
+
+              it do
+                is_expected.to have_attributes(context: 'test context#1 data')
+              end
             end
 
-            context 'gcontainer_node_pool[title2]' do
+            context 'gcontainer_kube_config[title2]' do
               subject do
-                chef_run.find_resource(:gcontainer_node_pool, 'title2')
+                chef_run.find_resource(:gcontainer_kube_config, 'title2')
               end
 
               it do
-                is_expected.to have_attributes(np_label: 'test name#2 data')
+                is_expected.to have_attributes(kc_label: 'test name#2 data')
               end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'config' do
-              #   # Add test code here
-              # end
-
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'autoscaling' do
-              #   # Add test code here
-              # end
-
-              # TODO(nelsonjr): Implement complex nested property object test.
-              # it 'management' do
-              #   # Add test code here
-              # end
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -701,6 +393,10 @@ context 'gcontainer_node_pool' do
               # end
 
               it { is_expected.to have_attributes(zone: 'test zone#2 data') }
+
+              it do
+                is_expected.to have_attributes(context: 'test context#2 data')
+              end
             end
           end
 
@@ -753,52 +449,16 @@ context 'gcontainer_node_pool' do
         # Ensure present: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      cluster: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0'
             expect_network_create \
               1,
               {
                 'name' => 'title0',
-                'config' => {
-                  'machineType' => 'test machine_type#0 data',
-                  'diskSizeGb' => 450_092_159,
-                  'oauthScopes' => %w[ww xx yy zz],
-                  'serviceAccount' => 'test service_account#0 data',
-                  'metadata' => {
-                    'test metadata#1 data' => 'test metadata#1 data',
-                    'test metadata#2 data' => 2_666_715_473,
-                    'test metadata#3 data' => 'test metadata#3 data'
-                  },
-                  'imageType' => 'test image_type#0 data',
-                  'labels' => {
-                    'test labels#1 data' => 'test labels#1 data',
-                    'test labels#2 data' => 6_131_251_034
-                  },
-                  'localSsdCount' => 1_751_176_017,
-                  'tags' => %w[mm nn oo pp],
-                  'preemptible' => true
-                },
-                'initialNodeCount' => 1_911_672_831,
-                'autoscaling' => {
-                  'enabled' => true,
-                  'minNodeCount' => 1_663_550_365,
-                  'maxNodeCount' => 39_920_247
-                },
-                'management' => {
-                  'autoUpgrade' => true,
-                  'autoRepair' => true,
-                  'upgradeOptions' => {
-                    'autoUpgradeStartTime' => '2014-10-31T08:37:14+00:00',
-                    'description' => 'test description#0 data'
-                  }
-                }
+                'cluster' => 'test name#0 data',
+                'zone' => 'test zone#0 data',
+                'context' => 'test context#0 data'
               },
-              name: 'title0',
-              cluster: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     cluster: 'test name#0 data'
+              name: 'title0'
             expect_network_get_success_cluster 1
           end
 
@@ -820,7 +480,7 @@ context 'gcontainer_node_pool' do
               cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
             end
             ChefSpec::SoloRunner.new(
-              step_into: %w[gcontainer_node_pool gcontainer_cluster],
+              step_into: %w[gcontainer_kube_config gcontainer_cluster],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
               version: '16.04'
@@ -839,42 +499,10 @@ context 'gcontainer_node_pool' do
                   credential 'mycred'
                 end
 
-                gcontainer_node_pool 'title0' do
+                gcontainer_kube_config 'title0' do
                   action :create
-                  autoscaling({
-                    enabled: true,
-                    max_node_count: 39920247,
-                    min_node_count: 1663550365
-                  })
                   cluster 'resource(cluster,0)'
-                  config({
-                    disk_size_gb: 450092159,
-                    image_type: 'test image_type#0 data',
-                    labels: {
-                      'test labels#1 data' => 'test labels#1 data',
-                      'test labels#2 data' => 6131251034
-                    },
-                    local_ssd_count: 1751176017,
-                    machine_type: 'test machine_type#0 data',
-                    metadata: {
-                      'test metadata#1 data' => 'test metadata#1 data',
-                      'test metadata#2 data' => 2666715473,
-                      'test metadata#3 data' => 'test metadata#3 data'
-                    },
-                    oauth_scopes: ['ww', 'xx', 'yy', 'zz'],
-                    preemptible: true,
-                    service_account: 'test service_account#0 data',
-                    tags: ['mm', 'nn', 'oo', 'pp']
-                  })
-                  initial_node_count 1911672831
-                  management({
-                    auto_repair: true,
-                    auto_upgrade: true,
-                    upgrade_options: {
-                      auto_upgrade_start_time: '2014-10-31T08:37:14+00:00',
-                      description: 'test description#0 data'
-                    }
-                  })
+                  context 'test context#0 data'
                   zone 'test zone#0 data'
                   project 'test project#0 data'
                   credential 'mycred'
@@ -890,33 +518,14 @@ context 'gcontainer_node_pool' do
           end
 
           subject do
-            chef_run.find_resource(:gcontainer_node_pool, 'title0')
+            chef_run.find_resource(:gcontainer_kube_config, 'title0')
           end
 
           it 'should run test correctly' do
-            expect(chef_run).to create(:gcontainer_node_pool,
+            expect(chef_run).to create(:gcontainer_kube_config,
                                        'title0')
           end
-          it { is_expected.to have_attributes(np_label: 'title0') }
-
-          # TODO(nelsonjr): Implement complex nested property object test.
-          # it 'config' do
-          #   # Add test code here
-          # end
-
-          it do
-            is_expected.to have_attributes(initial_node_count: 1_911_672_831)
-          end
-
-          # TODO(nelsonjr): Implement complex nested property object test.
-          # it 'autoscaling' do
-          #   # Add test code here
-          # end
-
-          # TODO(nelsonjr): Implement complex nested property object test.
-          # it 'management' do
-          #   # Add test code here
-          # end
+          it { is_expected.to have_attributes(kc_label: 'title0') }
 
           # TODO(alexstephen): Implement resourceref test.
           # it 'cluster' do
@@ -924,6 +533,8 @@ context 'gcontainer_node_pool' do
           # end
 
           it { is_expected.to have_attributes(zone: 'test zone#0 data') }
+
+          it { is_expected.to have_attributes(context: 'test context#0 data') }
         end
 
         # Ensure present: resource missing, ignore, no name, fail
@@ -939,47 +550,13 @@ context 'gcontainer_node_pool' do
         # Ensure present: resource missing, ignore, has name, pass
         context 'title != name (pass)' do
           before do
-            expect_network_get_failed 1, cluster: 'test name#0 data'
+            expect_network_get_failed 1
             expect_network_create \
               1,
-              {
-                'name' => 'test name#0 data',
-                'config' => {
-                  'machineType' => 'test machine_type#0 data',
-                  'diskSizeGb' => 450_092_159,
-                  'oauthScopes' => %w[ww xx yy zz],
-                  'serviceAccount' => 'test service_account#0 data',
-                  'metadata' => {
-                    'test metadata#1 data' => 'test metadata#1 data',
-                    'test metadata#2 data' => 2_666_715_473,
-                    'test metadata#3 data' => 'test metadata#3 data'
-                  },
-                  'imageType' => 'test image_type#0 data',
-                  'labels' => {
-                    'test labels#1 data' => 'test labels#1 data',
-                    'test labels#2 data' => 6_131_251_034
-                  },
-                  'localSsdCount' => 1_751_176_017,
-                  'tags' => %w[mm nn oo pp],
-                  'preemptible' => true
-                },
-                'initialNodeCount' => 1_911_672_831,
-                'autoscaling' => {
-                  'enabled' => true,
-                  'minNodeCount' => 1_663_550_365,
-                  'maxNodeCount' => 39_920_247
-                },
-                'management' => {
-                  'autoUpgrade' => true,
-                  'autoRepair' => true,
-                  'upgradeOptions' => {
-                    'autoUpgradeStartTime' => '2014-10-31T08:37:14+00:00',
-                    'description' => 'test description#0 data'
-                  }
-                }
-              },
-              cluster: 'test name#0 data'
-            expect_network_get_async 1, cluster: 'test name#0 data'
+              'name' => 'test name#0 data',
+              'cluster' => 'test name#0 data',
+              'zone' => 'test zone#0 data',
+              'context' => 'test context#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -1001,7 +578,7 @@ context 'gcontainer_node_pool' do
               cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
             end
             ChefSpec::SoloRunner.new(
-              step_into: %w[gcontainer_node_pool gcontainer_cluster],
+              step_into: %w[gcontainer_kube_config gcontainer_cluster],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
               version: '16.04'
@@ -1020,43 +597,11 @@ context 'gcontainer_node_pool' do
                   credential 'mycred'
                 end
 
-                gcontainer_node_pool 'title0' do
+                gcontainer_kube_config 'title0' do
                   action :create
-                  autoscaling({
-                    enabled: true,
-                    max_node_count: 39920247,
-                    min_node_count: 1663550365
-                  })
                   cluster 'resource(cluster,0)'
-                  config({
-                    disk_size_gb: 450092159,
-                    image_type: 'test image_type#0 data',
-                    labels: {
-                      'test labels#1 data' => 'test labels#1 data',
-                      'test labels#2 data' => 6131251034
-                    },
-                    local_ssd_count: 1751176017,
-                    machine_type: 'test machine_type#0 data',
-                    metadata: {
-                      'test metadata#1 data' => 'test metadata#1 data',
-                      'test metadata#2 data' => 2666715473,
-                      'test metadata#3 data' => 'test metadata#3 data'
-                    },
-                    oauth_scopes: ['ww', 'xx', 'yy', 'zz'],
-                    preemptible: true,
-                    service_account: 'test service_account#0 data',
-                    tags: ['mm', 'nn', 'oo', 'pp']
-                  })
-                  initial_node_count 1911672831
-                  management({
-                    auto_repair: true,
-                    auto_upgrade: true,
-                    upgrade_options: {
-                      auto_upgrade_start_time: '2014-10-31T08:37:14+00:00',
-                      description: 'test description#0 data'
-                    }
-                  })
-                  np_label 'test name#0 data'
+                  context 'test context#0 data'
+                  kc_label 'test name#0 data'
                   zone 'test zone#0 data'
                   project 'test project#0 data'
                   credential 'mycred'
@@ -1072,33 +617,14 @@ context 'gcontainer_node_pool' do
           end
 
           subject do
-            chef_run.find_resource(:gcontainer_node_pool, 'title0')
+            chef_run.find_resource(:gcontainer_kube_config, 'title0')
           end
 
           it 'should run test correctly' do
-            expect(chef_run).to create(:gcontainer_node_pool,
+            expect(chef_run).to create(:gcontainer_kube_config,
                                        'title0')
           end
-          it { is_expected.to have_attributes(np_label: 'test name#0 data') }
-
-          # TODO(nelsonjr): Implement complex nested property object test.
-          # it 'config' do
-          #   # Add test code here
-          # end
-
-          it do
-            is_expected.to have_attributes(initial_node_count: 1_911_672_831)
-          end
-
-          # TODO(nelsonjr): Implement complex nested property object test.
-          # it 'autoscaling' do
-          #   # Add test code here
-          # end
-
-          # TODO(nelsonjr): Implement complex nested property object test.
-          # it 'management' do
-          #   # Add test code here
-          # end
+          it { is_expected.to have_attributes(kc_label: 'test name#0 data') }
 
           # TODO(alexstephen): Implement resourceref test.
           # it 'cluster' do
@@ -1106,6 +632,8 @@ context 'gcontainer_node_pool' do
           # end
 
           it { is_expected.to have_attributes(zone: 'test zone#0 data') }
+
+          it { is_expected.to have_attributes(context: 'test context#0 data') }
         end
 
         # Ensure present: resource missing, ignore, has name, fail
@@ -1125,9 +653,7 @@ context 'gcontainer_node_pool' do
         # Ensure absent: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      cluster: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0'
             expect_network_get_success_cluster 1
           end
 
@@ -1149,7 +675,7 @@ context 'gcontainer_node_pool' do
               cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
             end
             ChefSpec::SoloRunner.new(
-              step_into: %w[gcontainer_node_pool gcontainer_cluster],
+              step_into: %w[gcontainer_kube_config gcontainer_cluster],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
               version: '16.04'
@@ -1168,10 +694,10 @@ context 'gcontainer_node_pool' do
                   credential 'mycred'
                 end
 
-                gcontainer_node_pool 'title0' do
+                gcontainer_kube_config 'title0' do
                   action :delete
                   cluster 'resource(cluster,0)'
-                  initial_node_count 1911672831
+                  context 'test context#0 data'
                   zone 'test zone#0 data'
                   project 'test project#0 data'
                   credential 'mycred'
@@ -1187,7 +713,7 @@ context 'gcontainer_node_pool' do
           end
 
           subject do
-            chef_run.find_resource(:gcontainer_node_pool, 'title0')
+            chef_run.find_resource(:gcontainer_kube_config, 'title0')
           end
         end
 
@@ -1204,7 +730,7 @@ context 'gcontainer_node_pool' do
         # Ensure absent: resource missing, ignore, has name, pass
         context 'title != name (pass)' do
           before do
-            expect_network_get_failed 1, cluster: 'test name#0 data'
+            expect_network_get_failed 1
             expect_network_get_success_cluster 1
           end
 
@@ -1226,7 +752,7 @@ context 'gcontainer_node_pool' do
               cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
             end
             ChefSpec::SoloRunner.new(
-              step_into: %w[gcontainer_node_pool gcontainer_cluster],
+              step_into: %w[gcontainer_kube_config gcontainer_cluster],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
               version: '16.04'
@@ -1245,11 +771,11 @@ context 'gcontainer_node_pool' do
                   credential 'mycred'
                 end
 
-                gcontainer_node_pool 'title0' do
+                gcontainer_kube_config 'title0' do
                   action :delete
                   cluster 'resource(cluster,0)'
-                  initial_node_count 1911672831
-                  np_label 'test name#0 data'
+                  context 'test context#0 data'
+                  kc_label 'test name#0 data'
                   zone 'test zone#0 data'
                   project 'test project#0 data'
                   credential 'mycred'
@@ -1265,7 +791,7 @@ context 'gcontainer_node_pool' do
           end
 
           subject do
-            chef_run.find_resource(:gcontainer_node_pool, 'title0')
+            chef_run.find_resource(:gcontainer_kube_config, 'title0')
           end
         end
 
@@ -1284,13 +810,8 @@ context 'gcontainer_node_pool' do
         # Ensure absent: resource exists, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_success 1,
-                                       name: 'title0',
-                                       cluster: 'test name#0 data'
-            expect_network_delete 1, 'title0', cluster: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     cluster: 'test name#0 data'
+            expect_network_get_success 1, name: 'title0'
+            expect_network_delete 1, 'title0'
             expect_network_get_success_cluster 1
           end
 
@@ -1312,7 +833,7 @@ context 'gcontainer_node_pool' do
               cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
             end
             ChefSpec::SoloRunner.new(
-              step_into: %w[gcontainer_node_pool gcontainer_cluster],
+              step_into: %w[gcontainer_kube_config gcontainer_cluster],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
               version: '16.04'
@@ -1331,10 +852,10 @@ context 'gcontainer_node_pool' do
                   credential 'mycred'
                 end
 
-                gcontainer_node_pool 'title0' do
+                gcontainer_kube_config 'title0' do
                   action :delete
                   cluster 'resource(cluster,0)'
-                  initial_node_count 1911672831
+                  context 'test context#0 data'
                   zone 'test zone#0 data'
                   project 'test project#0 data'
                   credential 'mycred'
@@ -1350,11 +871,11 @@ context 'gcontainer_node_pool' do
           end
 
           subject do
-            chef_run.find_resource(:gcontainer_node_pool, 'title0')
+            chef_run.find_resource(:gcontainer_kube_config, 'title0')
           end
 
           it 'should run test correctly' do
-            expect(chef_run).to delete(:gcontainer_node_pool,
+            expect(chef_run).to delete(:gcontainer_kube_config,
                                        'title0')
           end
         end
@@ -1371,9 +892,8 @@ context 'gcontainer_node_pool' do
         # Ensure absent: resource exists, ignore, has name, pass
         context 'title != name (pass)' do
           before do
-            expect_network_get_success 1, cluster: 'test name#0 data'
-            expect_network_delete 1, nil, cluster: 'test name#0 data'
-            expect_network_get_async 1, cluster: 'test name#0 data'
+            expect_network_get_success 1
+            expect_network_delete 1
             expect_network_get_success_cluster 1
           end
 
@@ -1395,7 +915,7 @@ context 'gcontainer_node_pool' do
               cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
             end
             ChefSpec::SoloRunner.new(
-              step_into: %w[gcontainer_node_pool gcontainer_cluster],
+              step_into: %w[gcontainer_kube_config gcontainer_cluster],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
               version: '16.04'
@@ -1414,11 +934,11 @@ context 'gcontainer_node_pool' do
                   credential 'mycred'
                 end
 
-                gcontainer_node_pool 'title0' do
+                gcontainer_kube_config 'title0' do
                   action :delete
                   cluster 'resource(cluster,0)'
-                  initial_node_count 1911672831
-                  np_label 'test name#0 data'
+                  context 'test context#0 data'
+                  kc_label 'test name#0 data'
                   zone 'test zone#0 data'
                   project 'test project#0 data'
                   credential 'mycred'
@@ -1434,11 +954,11 @@ context 'gcontainer_node_pool' do
           end
 
           subject do
-            chef_run.find_resource(:gcontainer_node_pool, 'title0')
+            chef_run.find_resource(:gcontainer_kube_config, 'title0')
           end
 
           it 'should run test correctly' do
-            expect(chef_run).to delete(:gcontainer_node_pool,
+            expect(chef_run).to delete(:gcontainer_kube_config,
                                        'title0')
           end
         end
@@ -1454,13 +974,8 @@ context 'gcontainer_node_pool' do
   end
 
   def expand_variables(template, data, extra_data = {})
-    Google::GCONTAINER::NodePool
+    Google::GCONTAINER::KubeConfig
       .action_class.expand_variables(template, data, extra_data)
-  end
-
-  def encode_request(resource)
-    Google::GCONTAINER::NodePool
-      .action_class.encode_request(resource)
   end
 
   def expect_network_get_success(id, data = {})
@@ -1486,21 +1001,6 @@ context 'gcontainer_node_pool' do
     response
   end
 
-  def expect_network_get_async(id, data = {})
-    body = {}.to_json
-
-    request = double('request')
-    allow(request).to receive(:send).and_return(http_success(body))
-
-    debug_network "!! #{self_link(uri_data(id).merge(data))}"
-    expect(Google::Container::Network::Get).to receive(:new)
-      .with(self_link(uri_data(id).merge(data)),
-            instance_of(Google::FakeAuthorization)) do |args|
-      debug_network ">> GET <async> #{args}"
-      request
-    end
-  end
-
   def expect_network_get_failed(id, data = {})
     request = double('request')
     allow(request).to receive(:send).and_return(http_failed_object_missing)
@@ -1518,20 +1018,15 @@ context 'gcontainer_node_pool' do
     Net::HTTPNotFound.new(1.0, 404, 'Not Found')
   end
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def expect_network_create(id, expected_body, data = {})
     merged_uri = uri_data(id).merge(data)
-    body = { kind: 'container#operation',
-             status: 'DONE', targetLink: self_link(merged_uri) }.to_json
+    body = {}.to_json
 
     # Remove refs that are also part of the body
     expected_body = Hash[expected_body.map do |k, v|
       [k.is_a?(Symbol) ? k.id2name : k, v]
     end]
 
-    # Encode the object to conform with the API
-    expected_body = encode_request(expected_body)
     request = double('request')
     allow(request).to receive(:send).and_return(http_success(body))
 
@@ -1543,15 +1038,11 @@ context 'gcontainer_node_pool' do
       request
     end
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
 
   def expect_network_delete(id, name = nil, data = {})
     delete_data = uri_data(id).merge(data)
     delete_data[:name] = name unless name.nil?
-    body = { kind: 'container#operation',
-             status: 'DONE',
-             targetLink: self_link(delete_data) }.to_json
+    body = {}.to_json
 
     request = double('request')
     allow(request).to receive(:send).and_return(http_success(body))
@@ -1567,7 +1058,7 @@ context 'gcontainer_node_pool' do
 
   def load_network_result(file)
     results = File.join(File.dirname(__FILE__), 'data', 'network',
-                        'gcontainer_node_pool', file)
+                        'gcontainer_kube_config', file)
     debug("Loading result file: #{results}")
     raise "Network result data file #{results}" unless File.exist?(results)
     data = YAML.safe_load(File.read(results))
@@ -1644,7 +1135,7 @@ context 'gcontainer_node_pool' do
     URI.join(
       'https://container.googleapis.com/v1/',
       expand_variables(
-        'projects/{{project}}/zones/{{zone}}/clusters/{{cluster}}/nodePools',
+        'unused',
         data
       )
     )
@@ -1654,8 +1145,7 @@ context 'gcontainer_node_pool' do
     URI.join(
       'https://container.googleapis.com/v1/',
       expand_variables(
-        'projects/{{project}}/zones/{{zone}}',
-        'clusters/{{cluster}}/nodePools/{{name}}',
+        'unused/{{name}}',
         data
       )
     )
@@ -1664,14 +1154,8 @@ context 'gcontainer_node_pool' do
   # Creates variable test data to comply with self_link URI parameters
   def uri_data(id)
     {
-      project: GoogleTests::Constants::NP_PROJECT_DATA[(id - 1) \
-        % GoogleTests::Constants::NP_PROJECT_DATA.size],
-      zone: GoogleTests::Constants::NP_ZONE_DATA[(id - 1) \
-        % GoogleTests::Constants::NP_ZONE_DATA.size],
-      cluster: GoogleTests::Constants::NP_CLUSTER_DATA[(id - 1) \
-        % GoogleTests::Constants::NP_CLUSTER_DATA.size],
-      name: GoogleTests::Constants::NP_NAME_DATA[(id - 1) \
-        % GoogleTests::Constants::NP_NAME_DATA.size]
+      name: GoogleTests::Constants::KC_NAME_DATA[(id - 1) \
+        % GoogleTests::Constants::KC_NAME_DATA.size]
     }
   end
 

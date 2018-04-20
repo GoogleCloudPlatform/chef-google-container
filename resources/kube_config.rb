@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -33,55 +33,29 @@ require 'google/container/network/delete'
 require 'google/container/network/get'
 require 'google/container/network/post'
 require 'google/container/network/put'
-require 'google/container/property/boolean'
 require 'google/container/property/cluster_name'
-require 'google/container/property/integer'
-require 'google/container/property/namevalues'
-require 'google/container/property/nodepool_autoscaling'
-require 'google/container/property/nodepool_config'
-require 'google/container/property/nodepool_management'
-require 'google/container/property/nodepool_upgrade_options'
 require 'google/container/property/string'
-require 'google/container/property/string_array'
-require 'google/container/property/time'
 require 'google/hash_utils'
 
 module Google
   module GCONTAINER
     # A provider to manage Google Container Engine resources.
-    # rubocop:disable Metrics/ClassLength
-    class NodePool < Chef::Resource
-      resource_name :gcontainer_node_pool
+    class KubeConfig < Chef::Resource
+      resource_name :gcontainer_kube_config
 
-      property :np_label,
+      property :kc_label,
                String,
                coerce: ::Google::Container::Property::String.coerce,
                name_property: true, desired_state: true
-      property :config,
-               [Hash, ::Google::Container::Data::NodePoolConfig],
-               coerce: ::Google::Container::Property::NodePoolConfig.coerce,
-               desired_state: true
-      property :initial_node_count,
-               Integer,
-               coerce: ::Google::Container::Property::Integer.coerce,
-               desired_state: true
-      property :version,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :autoscaling,
-               [Hash, ::Google::Container::Data::NodePoolAutosca],
-               coerce: ::Google::Container::Property::NodePoolAutosca.coerce,
-               desired_state: true
-      property :management,
-               [Hash, ::Google::Container::Data::NodePoolManagem],
-               coerce: ::Google::Container::Property::NodePoolManagem.coerce,
-               desired_state: true
       property :cluster,
                [String, ::Google::Container::Data::ClusterNameRef],
                coerce: ::Google::Container::Property::ClusterNameRef.coerce,
                desired_state: true
       property :zone,
+               String,
+               coerce: ::Google::Container::Property::String.coerce,
+               desired_state: true
+      property :context,
                String,
                coerce: ::Google::Container::Property::String.coerce,
                desired_state: true
@@ -92,7 +66,7 @@ module Google
       action :create do
         fetch = fetch_resource(@new_resource, self_link(@new_resource))
         if fetch.nil?
-          converge_by "Creating gcontainer_node_pool[#{new_resource.name}]" do
+          converge_by "Creating gcontainer_kube_config[#{new_resource.name}]" do
             # TODO(nelsonjr): Show a list of variables to create
             # TODO(nelsonjr): Determine how to print green like update converge
             puts # making a newline until we find a better way TODO: find!
@@ -101,26 +75,20 @@ module Google
               collection(@new_resource), fetch_auth(@new_resource),
               'application/json', resource_to_request
             )
-            wait_for_operation create_req.send, @new_resource
+            return_if_object create_req.send
           end
         else
           @current_resource = @new_resource.clone
-          @current_resource.np_label =
+          @current_resource.kc_label =
             ::Google::Container::Property::String.api_parse(fetch['name'])
-          @current_resource.config =
-            ::Google::Container::Property::NodePoolConfig.api_parse(
-              fetch['config']
+          @current_resource.cluster =
+            ::Google::Container::Property::ClusterNameRef.api_parse(
+              fetch['cluster']
             )
-          @current_resource.version =
-            ::Google::Container::Property::String.api_parse(fetch['version'])
-          @current_resource.autoscaling =
-            ::Google::Container::Property::NodePoolAutosca.api_parse(
-              fetch['autoscaling']
-            )
-          @current_resource.management =
-            ::Google::Container::Property::NodePoolManagem.api_parse(
-              fetch['management']
-            )
+          @current_resource.zone =
+            ::Google::Container::Property::String.api_parse(fetch['zone'])
+          @current_resource.context =
+            ::Google::Container::Property::String.api_parse(fetch['context'])
 
           update
         end
@@ -129,11 +97,11 @@ module Google
       action :delete do
         fetch = fetch_resource(@new_resource, self_link(@new_resource))
         unless fetch.nil?
-          converge_by "Deleting gcontainer_node_pool[#{new_resource.name}]" do
+          converge_by "Deleting gcontainer_kube_config[#{new_resource.name}]" do
             delete_req = ::Google::Container::Network::Delete.new(
               self_link(@new_resource), fetch_auth(@new_resource)
             )
-            wait_for_operation delete_req.send, @new_resource
+            return_if_object delete_req.send
           end
         end
       end
@@ -145,14 +113,11 @@ module Google
       action_class do
         def resource_to_request
           request = {
-            name: new_resource.np_label,
-            config: new_resource.config,
-            initialNodeCount: new_resource.initial_node_count,
-            autoscaling: new_resource.autoscaling,
-            management: new_resource.management
+            name: new_resource.kc_label,
+            cluster: new_resource.cluster,
+            zone: new_resource.zone,
+            context: new_resource.context
           }.reject { |_, v| v.nil? }
-          # Format request to conform with API endpoint
-          request = encode_request(request)
           request.to_json
         end
 
@@ -167,7 +132,7 @@ module Google
                                                     fetch_auth(@new_resource),
                                                     'application/json',
                                                     resource_to_request)
-            wait_for_operation update_req.send, @new_resource
+            return_if_object update_req.send, ''
           end
         end
 
@@ -179,14 +144,10 @@ module Google
         def self.resource_to_hash(resource)
           {
             project: resource.project,
-            name: resource.np_label,
-            config: resource.config,
-            initial_node_count: resource.initial_node_count,
-            version: resource.version,
-            autoscaling: resource.autoscaling,
-            management: resource.management,
+            name: resource.kc_label,
             cluster: resource.cluster,
-            zone: resource.zone
+            zone: resource.zone,
+            context: resource.context
           }.reject { |_, v| v.nil? }
         end
 
@@ -266,7 +227,7 @@ module Google
           URI.join(
             'https://container.googleapis.com/v1/',
             expand_variables(
-              'projects/{{project}}/zones/{{zone}}/clusters/{{cluster}}/nodePools',
+              'unused',
               data
             )
           )
@@ -280,8 +241,7 @@ module Google
           URI.join(
             'https://container.googleapis.com/v1/',
             expand_variables(
-              'projects/{{project}}/zones/{{zone}}',
-              'clusters/{{cluster}}/nodePools/{{name}}',
+              'unused/{{name}}',
               data
             )
           )
@@ -328,75 +288,6 @@ module Google
           template
         end
 
-        def expand_variables(template, var_data, extra_data = {})
-          self.class.expand_variables(template, var_data, extra_data)
-        end
-
-        def fetch_resource(resource, self_link)
-          self.class.fetch_resource(resource, self_link)
-        end
-
-        def async_op_url(data, extra_data = {})
-          URI.join(
-            'https://container.googleapis.com/v1/',
-            expand_variables(
-              'projects/{{project}}/zones/{{zone}}/operations/{{op_id}}',
-              data, extra_data
-            )
-          )
-        end
-
-        def wait_for_operation(response, resource)
-          op_result = return_if_object(response)
-          return if op_result.nil?
-          status = ::Google::HashUtils.navigate(op_result, %w[status])
-          wait_done = wait_for_completion(status, op_result, resource)
-          fetch_resource(
-            resource,
-            URI.parse(::Google::HashUtils.navigate(wait_done,
-                                                   %w[targetLink]))
-          )
-        end
-
-        def wait_for_completion(status, op_result, resource)
-          op_id = ::Google::HashUtils.navigate(op_result, %w[name])
-          op_uri = async_op_url(resource, op_id: op_id)
-          while status != 'DONE'
-            debug("Waiting for completion of operation #{op_id}")
-            raise_if_errors op_result, %w[error errors], 'message'
-            sleep 1.0
-            raise "Invalid result '#{status}' on gcontainer_node_pool." \
-              unless %w[PENDING RUNNING DONE ABORTING].include?(status)
-            op_result = fetch_resource(resource, op_uri)
-            status = ::Google::HashUtils.navigate(op_result, %w[status])
-          end
-          op_result
-        end
-
-        def raise_if_errors(response, err_path, msg_field)
-          self.class.raise_if_errors(response, err_path, msg_field)
-        end
-
-        # Google Container Engine API has its own layout for the create method,
-        # defined like this:
-        #
-        # {
-        #   'nodePool': {
-        #     ... node pool data
-        #   }
-        # }
-        #
-        # Format the request to match the expected input by the API
-        def self.encode_request(resource_request)
-          {
-            'nodePool' => resource_request
-          }
-        end
-
-        def encode_request(resource_request)
-          self.class.encode_request(resource_request)
-        end
-
         def self.fetch_resource(resource, self_link)
           get_request = ::Google::Container::Network::Get.new(
             self_link, fetch_auth(resource)
@@ -415,6 +306,5 @@ module Google
         end
       end
     end
-    # rubocop:enable Metrics/ClassLength
   end
 end

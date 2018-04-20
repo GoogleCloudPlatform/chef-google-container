@@ -126,6 +126,7 @@ chef-codegen:
   * recipes/tests~delete_node_pool.rb
   * recipes/tests~node_pool.rb
   * resources/cluster.rb
+  * resources/kube_config.rb
   * resources/node_pool.rb
   * spec/bundle.rb
   * spec/cluster_spec.rb
@@ -136,6 +137,12 @@ chef-codegen:
   * spec/data/network/gcontainer_cluster/success2~title.yaml
   * spec/data/network/gcontainer_cluster/success3~name.yaml
   * spec/data/network/gcontainer_cluster/success3~title.yaml
+  * spec/data/network/gcontainer_kube_config/success1~name.yaml
+  * spec/data/network/gcontainer_kube_config/success1~title.yaml
+  * spec/data/network/gcontainer_kube_config/success2~name.yaml
+  * spec/data/network/gcontainer_kube_config/success2~title.yaml
+  * spec/data/network/gcontainer_kube_config/success3~name.yaml
+  * spec/data/network/gcontainer_kube_config/success3~title.yaml
   * spec/data/network/gcontainer_node_pool/success1~name.yaml
   * spec/data/network/gcontainer_node_pool/success1~title.yaml
   * spec/data/network/gcontainer_node_pool/success2~name.yaml
@@ -145,6 +152,7 @@ chef-codegen:
   * spec/fake_auth.rb
   * spec/fake_cred.rb
   * spec/foodcritic_spec.rb
+  * spec/kube_config_spec.rb
   * spec/network_blocker.rb
   * spec/network_blocker_spec.rb
   * spec/network_delete_spec.rb
