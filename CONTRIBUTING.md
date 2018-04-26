@@ -119,11 +119,13 @@ chef-codegen:
   * recipes/examples~cluster.rb
   * recipes/examples~delete_cluster.rb
   * recipes/examples~delete_node_pool.rb
+  * recipes/examples~kube_config.rb
   * recipes/examples~node_pool.rb
   * recipes/README.md
   * recipes/tests~cluster.rb
   * recipes/tests~delete_cluster.rb
   * recipes/tests~delete_node_pool.rb
+  * recipes/tests~kube_config.rb
   * recipes/tests~node_pool.rb
   * resources/cluster.rb
   * resources/kube_config.rb
@@ -137,12 +139,6 @@ chef-codegen:
   * spec/data/network/gcontainer_cluster/success2~title.yaml
   * spec/data/network/gcontainer_cluster/success3~name.yaml
   * spec/data/network/gcontainer_cluster/success3~title.yaml
-  * spec/data/network/gcontainer_kube_config/success1~name.yaml
-  * spec/data/network/gcontainer_kube_config/success1~title.yaml
-  * spec/data/network/gcontainer_kube_config/success2~name.yaml
-  * spec/data/network/gcontainer_kube_config/success2~title.yaml
-  * spec/data/network/gcontainer_kube_config/success3~name.yaml
-  * spec/data/network/gcontainer_kube_config/success3~title.yaml
   * spec/data/network/gcontainer_node_pool/success1~name.yaml
   * spec/data/network/gcontainer_node_pool/success1~title.yaml
   * spec/data/network/gcontainer_node_pool/success2~name.yaml
