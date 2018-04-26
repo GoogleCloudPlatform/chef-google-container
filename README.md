@@ -665,7 +665,14 @@ Generates a compatible Kuberenetes '.kube/config' file
 
 ```ruby
 
-# TODO(rambleraptor): Add kube_config example here.
+gcontainer_kubeconfig '/home/alexstephen/.kube/config' do
+  action :create
+  context "gke-mycluster-#{ENV['cluster_id']}"
+  cluster "mycluster-#{ENV['cluster_id']}"
+  zone 'us-central1-a'
+  project 'google.com:graphite-playground'
+  credential 'mycred'
+end
 
 ```
 
