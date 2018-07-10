@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -89,9 +89,8 @@ context 'gcontainer_node_pool' do
               # add in the mocked version so that the tests do not fail.
               # Since cookbooks can have any name, we assume that
               # any directory with the word auth is the google-gauth cookbook.
-              if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-                cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-              end
+              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
               ChefSpec::SoloRunner.new(
                 step_into: %w[gcontainer_node_pool gcontainer_cluster],
                 cookbook_path: cookbook_paths,
@@ -411,9 +410,8 @@ context 'gcontainer_node_pool' do
               # add in the mocked version so that the tests do not fail.
               # Since cookbooks can have any name, we assume that
               # any directory with the word auth is the google-gauth cookbook.
-              if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-                cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-              end
+              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
               ChefSpec::SoloRunner.new(
                 step_into: %w[gcontainer_node_pool gcontainer_cluster],
                 cookbook_path: cookbook_paths,
@@ -816,9 +814,8 @@ context 'gcontainer_node_pool' do
             # add in the mocked version so that the tests do not fail.
             # Since cookbooks can have any name, we assume that
             # any directory with the word auth is the google-gauth cookbook.
-            if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-            end
+            cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
             ChefSpec::SoloRunner.new(
               step_into: %w[gcontainer_node_pool gcontainer_cluster],
               cookbook_path: cookbook_paths,
@@ -997,9 +994,8 @@ context 'gcontainer_node_pool' do
             # add in the mocked version so that the tests do not fail.
             # Since cookbooks can have any name, we assume that
             # any directory with the word auth is the google-gauth cookbook.
-            if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-            end
+            cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
             ChefSpec::SoloRunner.new(
               step_into: %w[gcontainer_node_pool gcontainer_cluster],
               cookbook_path: cookbook_paths,
@@ -1145,9 +1141,8 @@ context 'gcontainer_node_pool' do
             # add in the mocked version so that the tests do not fail.
             # Since cookbooks can have any name, we assume that
             # any directory with the word auth is the google-gauth cookbook.
-            if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-            end
+            cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
             ChefSpec::SoloRunner.new(
               step_into: %w[gcontainer_node_pool gcontainer_cluster],
               cookbook_path: cookbook_paths,
@@ -1222,9 +1217,8 @@ context 'gcontainer_node_pool' do
             # add in the mocked version so that the tests do not fail.
             # Since cookbooks can have any name, we assume that
             # any directory with the word auth is the google-gauth cookbook.
-            if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-            end
+            cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
             ChefSpec::SoloRunner.new(
               step_into: %w[gcontainer_node_pool gcontainer_cluster],
               cookbook_path: cookbook_paths,
@@ -1308,9 +1302,8 @@ context 'gcontainer_node_pool' do
             # add in the mocked version so that the tests do not fail.
             # Since cookbooks can have any name, we assume that
             # any directory with the word auth is the google-gauth cookbook.
-            if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-            end
+            cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
             ChefSpec::SoloRunner.new(
               step_into: %w[gcontainer_node_pool gcontainer_cluster],
               cookbook_path: cookbook_paths,
@@ -1391,9 +1384,8 @@ context 'gcontainer_node_pool' do
             # add in the mocked version so that the tests do not fail.
             # Since cookbooks can have any name, we assume that
             # any directory with the word auth is the google-gauth cookbook.
-            if Dir.entries(parent_dir).select { |p| p.include? 'auth' }.empty?
-              cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
-            end
+            cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
+
             ChefSpec::SoloRunner.new(
               step_into: %w[gcontainer_node_pool gcontainer_cluster],
               cookbook_path: cookbook_paths,
@@ -1654,7 +1646,7 @@ context 'gcontainer_node_pool' do
     URI.join(
       'https://container.googleapis.com/v1/',
       expand_variables(
-        'projects/{{project}}/zones/{{zone}}',
+        'projects/{{project}}/zones/{{zone}}' \
         'clusters/{{cluster}}/nodePools/{{name}}',
         data
       )
