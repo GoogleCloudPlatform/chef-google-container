@@ -113,7 +113,6 @@ chef-codegen:
   * libraries/google/container/property/string.rb
   * libraries/google/container/property/string_array.rb
   * libraries/google/container/property/time.rb
-  * LICENSE
   * metadata.rb
   * README.md
   * recipes/examples~cluster.rb

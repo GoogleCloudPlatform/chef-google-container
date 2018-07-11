@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -28,7 +28,7 @@
 module Google
   module Container
     module Data
-      # A class to manage data for config for node_pool.
+      # A class to manage data for Config for node_pool.
       class NodePoolConfig
         include Comparable
 
@@ -185,7 +185,7 @@ module Google
     end
 
     module Property
-      # A class to manage input to config for node_pool.
+      # A class to manage input to Config for node_pool.
       class NodePoolConfig
         def self.coerce
           lambda do |x|

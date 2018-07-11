@@ -33,7 +33,7 @@ end
 gcontainer_cluster 'test-cluster' do
   action :create
   zone 'us-central1-a'
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -42,7 +42,7 @@ gcontainer_node_pool 'web-servers' do
   initial_node_count 4
   cluster 'test-cluster'
   zone 'us-central1-a'
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 ```
@@ -104,7 +104,7 @@ gcontainer_cluster "mycluster-#{ENV['cluster_id']}" do
     disk_size_gb: 500              # ... and a lot of disk space
   )
   zone 'us-central1-a'
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -278,8 +278,7 @@ end
   The number of local SSD disks to be attached to the node.
   The limit for this value is dependant upon the maximum number of
   disks available on a machine per zone. See:
-  https://cloud.google.com/compute/docs/disks/
-  local-ssd#local_ssd_limits
+  https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
   for more information.
 
 * `node_config/tags`
@@ -447,7 +446,7 @@ gcontainer_node_pool 'web-servers' do
   initial_node_count 4
   cluster "mycluster-#{ENV['cluster_id']}"
   zone 'us-central1-a'
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -580,8 +579,7 @@ end
   The number of local SSD disks to be attached to the node.
   The limit for this value is dependant upon the maximum number of
   disks available on a machine per zone. See:
-  https://cloud.google.com/compute/docs/disks/
-  local-ssd#local_ssd_limits
+  https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
   for more information.
 
 * `config/tags`
@@ -647,7 +645,7 @@ end
   description of the upgrade.
 
 * `cluster` -
-  Required. A reference to Cluster resource
+  Required. The cluster this node pool belongs to.
 
 * `zone` -
   Required. The zone where the node pool is deployed
@@ -670,7 +668,7 @@ gcontainer_kubeconfig '/home/alexstephen/.kube/config' do
   context "gke-mycluster-#{ENV['cluster_id']}"
   cluster "mycluster-#{ENV['cluster_id']}"
   zone 'us-central1-a'
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
