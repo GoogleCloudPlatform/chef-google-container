@@ -61,15 +61,9 @@ context 'gcontainer_node_pool' do
               allow(Time).to receive(:now).and_return(
                 Time.new(2017, 1, 2, 3, 4, 5)
               )
-              expect_network_get_success 1,
-                                         name: 'title0',
-                                         cluster: 'test name#0 data'
-              expect_network_get_success 2,
-                                         name: 'title1',
-                                         cluster: 'test name#1 data'
-              expect_network_get_success 3,
-                                         name: 'title2',
-                                         cluster: 'test name#2 data'
+              expect_network_get_success 1, name: 'title0', cluster: 'test name#0 data'
+              expect_network_get_success 2, name: 'title1', cluster: 'test name#1 data'
+              expect_network_get_success 3, name: 'title2', cluster: 'test name#2 data'
               expect_network_get_success_cluster 1
               expect_network_get_success_cluster 2
               expect_network_get_success_cluster 3
@@ -278,10 +272,7 @@ context 'gcontainer_node_pool' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
@@ -313,10 +304,7 @@ context 'gcontainer_node_pool' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
@@ -348,10 +336,7 @@ context 'gcontainer_node_pool' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
@@ -595,19 +580,14 @@ context 'gcontainer_node_pool' do
                 chef_run.find_resource(:gcontainer_node_pool, 'title0')
               end
 
-              it do
-                is_expected.to have_attributes(np_label: 'test name#0 data')
-              end
+              it { is_expected.to have_attributes(np_label: 'test name#0 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'config' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
@@ -632,19 +612,14 @@ context 'gcontainer_node_pool' do
                 chef_run.find_resource(:gcontainer_node_pool, 'title1')
               end
 
-              it do
-                is_expected.to have_attributes(np_label: 'test name#1 data')
-              end
+              it { is_expected.to have_attributes(np_label: 'test name#1 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'config' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
@@ -669,19 +644,14 @@ context 'gcontainer_node_pool' do
                 chef_run.find_resource(:gcontainer_node_pool, 'title2')
               end
 
-              it do
-                is_expected.to have_attributes(np_label: 'test name#2 data')
-              end
+              it { is_expected.to have_attributes(np_label: 'test name#2 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'config' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
@@ -751,9 +721,7 @@ context 'gcontainer_node_pool' do
         # Ensure present: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      cluster: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_create \
               1,
               {
@@ -794,9 +762,7 @@ context 'gcontainer_node_pool' do
               },
               name: 'title0',
               cluster: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     cluster: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -901,9 +867,7 @@ context 'gcontainer_node_pool' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(initial_node_count: 1_911_672_831)
-          end
+          it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
           # TODO(nelsonjr): Implement complex nested property object test.
           # it 'autoscaling' do
@@ -1082,9 +1046,7 @@ context 'gcontainer_node_pool' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(initial_node_count: 1_911_672_831)
-          end
+          it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
           # TODO(nelsonjr): Implement complex nested property object test.
           # it 'autoscaling' do
@@ -1121,9 +1083,7 @@ context 'gcontainer_node_pool' do
         # Ensure absent: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      cluster: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -1278,13 +1238,9 @@ context 'gcontainer_node_pool' do
         # Ensure absent: resource exists, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_success 1,
-                                       name: 'title0',
-                                       cluster: 'test name#0 data'
+            expect_network_get_success 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_delete 1, 'title0', cluster: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     cluster: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -1646,8 +1602,7 @@ context 'gcontainer_node_pool' do
     URI.join(
       'https://container.googleapis.com/v1/',
       expand_variables(
-        'projects/{{project}}/zones/{{zone}}' \
-        'clusters/{{cluster}}/nodePools/{{name}}',
+        'projects/{{project}}/zones/{{zone}}/clusters/{{cluster}}/nodePools/{{name}}',
         data
       )
     )

@@ -261,15 +261,9 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(c_label: 'title0') }
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#0 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#0 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
@@ -281,27 +275,14 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+
+              it { is_expected.to have_attributes(network: 'test network#0 data') }
 
               it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-
-              it do
-                is_expected.to have_attributes(network: 'test network#0 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data')
               end
 
               # TODO(nelsonjr): Implement complex nested property object test.
@@ -309,10 +290,7 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#0 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data') }
 
               it { is_expected.to have_attributes(location: %w[qq rr ss tt]) }
 
@@ -326,15 +304,9 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(c_label: 'title1') }
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#1 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#1 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
@@ -350,15 +322,10 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(monitoring_service: 'none') }
 
-              it do
-                is_expected.to have_attributes(network: 'test network#1 data')
-              end
+              it { is_expected.to have_attributes(network: 'test network#1 data') }
 
               it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data')
               end
 
               # TODO(nelsonjr): Implement complex nested property object test.
@@ -366,10 +333,7 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#1 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#1 data') }
 
               it { is_expected.to have_attributes(location: %w[jj kk ll]) }
 
@@ -383,15 +347,9 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(c_label: 'title2') }
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#2 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#2 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
@@ -403,27 +361,14 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+
+              it { is_expected.to have_attributes(network: 'test network#2 data') }
 
               it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-
-              it do
-                is_expected.to have_attributes(network: 'test network#2 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data')
               end
 
               # TODO(nelsonjr): Implement complex nested property object test.
@@ -431,10 +376,7 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#2 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#2 data') }
 
               it { is_expected.to have_attributes(location: %w[cc dd]) }
 
@@ -661,15 +603,9 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(c_label: 'test name#0 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#0 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#0 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
@@ -681,27 +617,14 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+
+              it { is_expected.to have_attributes(network: 'test network#0 data') }
 
               it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-
-              it do
-                is_expected.to have_attributes(network: 'test network#0 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data')
               end
 
               # TODO(nelsonjr): Implement complex nested property object test.
@@ -709,10 +632,7 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#0 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data') }
 
               it { is_expected.to have_attributes(location: %w[qq rr ss tt]) }
 
@@ -726,15 +646,9 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(c_label: 'test name#1 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#1 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#1 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
@@ -750,15 +664,10 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(monitoring_service: 'none') }
 
-              it do
-                is_expected.to have_attributes(network: 'test network#1 data')
-              end
+              it { is_expected.to have_attributes(network: 'test network#1 data') }
 
               it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data')
               end
 
               # TODO(nelsonjr): Implement complex nested property object test.
@@ -766,10 +675,7 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#1 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#1 data') }
 
               it { is_expected.to have_attributes(location: %w[jj kk ll]) }
 
@@ -783,15 +689,9 @@ context 'gcontainer_cluster' do
 
               it { is_expected.to have_attributes(c_label: 'test name#2 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#2 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#2 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
@@ -803,27 +703,14 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+
+              it { is_expected.to have_attributes(network: 'test network#2 data') }
 
               it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-
-              it do
-                is_expected.to have_attributes(network: 'test network#2 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data')
               end
 
               # TODO(nelsonjr): Implement complex nested property object test.
@@ -831,10 +718,7 @@ context 'gcontainer_cluster' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#2 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#2 data') }
 
               it { is_expected.to have_attributes(location: %w[cc dd]) }
 
@@ -1040,14 +924,9 @@ context 'gcontainer_cluster' do
           end
           it { is_expected.to have_attributes(c_label: 'title0') }
 
-          it do
-            is_expected
-              .to have_attributes(description: 'test description#0 data')
-          end
+          it { is_expected.to have_attributes(description: 'test description#0 data') }
 
-          it do
-            is_expected.to have_attributes(initial_node_count: 1_911_672_831)
-          end
+          it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
           # TODO(nelsonjr): Implement complex nested property object test.
           # it 'nodeConfig' do
@@ -1059,35 +938,20 @@ context 'gcontainer_cluster' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected
-              .to have_attributes(logging_service: 'logging.googleapis.com')
-          end
+          it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
 
-          it do
-            is_expected
-              .to have_attributes(
-                monitoring_service: 'monitoring.googleapis.com'
-              )
-          end
+          it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
 
           it { is_expected.to have_attributes(network: 'test network#0 data') }
 
-          it do
-            is_expected
-              .to have_attributes(
-                cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data'
-              )
-          end
+          it { is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data') }
 
           # TODO(nelsonjr): Implement complex nested property object test.
           # it 'addonsConfig' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data')
-          end
+          it { is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data') }
 
           it { is_expected.to have_attributes(location: %w[qq rr ss tt]) }
 
@@ -1252,14 +1116,9 @@ context 'gcontainer_cluster' do
           end
           it { is_expected.to have_attributes(c_label: 'test name#0 data') }
 
-          it do
-            is_expected
-              .to have_attributes(description: 'test description#0 data')
-          end
+          it { is_expected.to have_attributes(description: 'test description#0 data') }
 
-          it do
-            is_expected.to have_attributes(initial_node_count: 1_911_672_831)
-          end
+          it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
 
           # TODO(nelsonjr): Implement complex nested property object test.
           # it 'nodeConfig' do
@@ -1271,35 +1130,20 @@ context 'gcontainer_cluster' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected
-              .to have_attributes(logging_service: 'logging.googleapis.com')
-          end
+          it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
 
-          it do
-            is_expected
-              .to have_attributes(
-                monitoring_service: 'monitoring.googleapis.com'
-              )
-          end
+          it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
 
           it { is_expected.to have_attributes(network: 'test network#0 data') }
 
-          it do
-            is_expected
-              .to have_attributes(
-                cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data'
-              )
-          end
+          it { is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data') }
 
           # TODO(nelsonjr): Implement complex nested property object test.
           # it 'addonsConfig' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data')
-          end
+          it { is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data') }
 
           it { is_expected.to have_attributes(location: %w[qq rr ss tt]) }
 

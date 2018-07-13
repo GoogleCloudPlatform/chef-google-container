@@ -173,9 +173,7 @@ context 'gcontainer_kube_config' do
 
               it { is_expected.to have_attributes(zone: 'test zone#0 data') }
 
-              it do
-                is_expected.to have_attributes(context: 'test context#0 data')
-              end
+              it { is_expected.to have_attributes(context: 'test context#0 data') }
             end
 
             context 'gcontainer_kube_config[title1]' do
@@ -192,9 +190,7 @@ context 'gcontainer_kube_config' do
 
               it { is_expected.to have_attributes(zone: 'test zone#1 data') }
 
-              it do
-                is_expected.to have_attributes(context: 'test context#1 data')
-              end
+              it { is_expected.to have_attributes(context: 'test context#1 data') }
             end
 
             context 'gcontainer_kube_config[title2]' do
@@ -211,9 +207,7 @@ context 'gcontainer_kube_config' do
 
               it { is_expected.to have_attributes(zone: 'test zone#2 data') }
 
-              it do
-                is_expected.to have_attributes(context: 'test context#2 data')
-              end
+              it { is_expected.to have_attributes(context: 'test context#2 data') }
             end
           end
 
@@ -339,9 +333,7 @@ context 'gcontainer_kube_config' do
                 chef_run.find_resource(:gcontainer_kube_config, 'title0')
               end
 
-              it do
-                is_expected.to have_attributes(kc_label: 'test name#0 data')
-              end
+              it { is_expected.to have_attributes(kc_label: 'test name#0 data') }
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -350,9 +342,7 @@ context 'gcontainer_kube_config' do
 
               it { is_expected.to have_attributes(zone: 'test zone#0 data') }
 
-              it do
-                is_expected.to have_attributes(context: 'test context#0 data')
-              end
+              it { is_expected.to have_attributes(context: 'test context#0 data') }
             end
 
             context 'gcontainer_kube_config[title1]' do
@@ -360,9 +350,7 @@ context 'gcontainer_kube_config' do
                 chef_run.find_resource(:gcontainer_kube_config, 'title1')
               end
 
-              it do
-                is_expected.to have_attributes(kc_label: 'test name#1 data')
-              end
+              it { is_expected.to have_attributes(kc_label: 'test name#1 data') }
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -371,9 +359,7 @@ context 'gcontainer_kube_config' do
 
               it { is_expected.to have_attributes(zone: 'test zone#1 data') }
 
-              it do
-                is_expected.to have_attributes(context: 'test context#1 data')
-              end
+              it { is_expected.to have_attributes(context: 'test context#1 data') }
             end
 
             context 'gcontainer_kube_config[title2]' do
@@ -381,9 +367,7 @@ context 'gcontainer_kube_config' do
                 chef_run.find_resource(:gcontainer_kube_config, 'title2')
               end
 
-              it do
-                is_expected.to have_attributes(kc_label: 'test name#2 data')
-              end
+              it { is_expected.to have_attributes(kc_label: 'test name#2 data') }
 
               # TODO(alexstephen): Implement resourceref test.
               # it 'cluster' do
@@ -392,9 +376,7 @@ context 'gcontainer_kube_config' do
 
               it { is_expected.to have_attributes(zone: 'test zone#2 data') }
 
-              it do
-                is_expected.to have_attributes(context: 'test context#2 data')
-              end
+              it { is_expected.to have_attributes(context: 'test context#2 data') }
             end
           end
 

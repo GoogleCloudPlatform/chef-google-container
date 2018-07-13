@@ -90,12 +90,9 @@ module Google
       # Data is coming from the GCP API
       class NodePoolAutoscaApi < NodePoolAutosca
         def initialize(args)
-          @enabled =
-            Google::Container::Property::Boolean.api_parse(args['enabled'])
-          @min_node_count =
-            Google::Container::Property::Integer.api_parse(args['minNodeCount'])
-          @max_node_count =
-            Google::Container::Property::Integer.api_parse(args['maxNodeCount'])
+          @enabled = Google::Container::Property::Boolean.api_parse(args['enabled'])
+          @min_node_count = Google::Container::Property::Integer.api_parse(args['minNodeCount'])
+          @max_node_count = Google::Container::Property::Integer.api_parse(args['maxNodeCount'])
         end
       end
 
@@ -103,14 +100,11 @@ module Google
       # Data is coming from the Chef catalog
       class NodePoolAutoscaCatalog < NodePoolAutosca
         def initialize(args)
-          @enabled =
-            Google::Container::Property::Boolean.catalog_parse(args[:enabled])
-          @min_node_count = Google::Container::Property::Integer.catalog_parse(
-            args[:min_node_count]
-          )
-          @max_node_count = Google::Container::Property::Integer.catalog_parse(
-            args[:max_node_count]
-          )
+          @enabled = Google::Container::Property::Boolean.catalog_parse(args[:enabled])
+          @min_node_count =
+            Google::Container::Property::Integer.catalog_parse(args[:min_node_count])
+          @max_node_count =
+            Google::Container::Property::Integer.catalog_parse(args[:max_node_count])
         end
       end
     end
@@ -119,9 +113,7 @@ module Google
       # A class to manage input to Autoscaling for node_pool.
       class NodePoolAutosca
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::NodePoolAutosca.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::NodePoolAutosca.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
