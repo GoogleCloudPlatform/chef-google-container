@@ -77,10 +77,7 @@ module Google
         def compare_fields(other)
           [
             { self: http_load_balancing, other: other.http_load_balancing },
-            {
-              self: horizontal_pod_autoscaling,
-              other: other.horizontal_pod_autoscaling
-            }
+            { self: horizontal_pod_autoscaling, other: other.horizontal_pod_autoscaling }
           ]
         end
       end
@@ -90,13 +87,10 @@ module Google
       class ClusterAddonsConfigApi < ClusterAddonsConfig
         def initialize(args)
           @http_load_balancing =
-            Google::Container::Property::ClustHttpLoadBalan.api_parse(
-              args['httpLoadBalancing']
-            )
-          @horizontal_pod_autoscaling =
-            Google::Container::Property::ClustHorizPodAutos.api_parse(
-              args['horizontalPodAutoscaling']
-            )
+            Google::Container::Property::ClustHttpLoadBalan.api_parse(args['httpLoadBalancing'])
+          @horizontal_pod_autoscaling = Google::Container::Property::ClustHorizPodAutos.api_parse(
+            args['horizontalPodAutoscaling']
+          )
         end
       end
 
@@ -104,10 +98,9 @@ module Google
       # Data is coming from the Chef catalog
       class ClusterAddonsConfigCatalog < ClusterAddonsConfig
         def initialize(args)
-          @http_load_balancing =
-            Google::Container::Property::ClustHttpLoadBalan.catalog_parse(
-              args[:http_load_balancing]
-            )
+          @http_load_balancing = Google::Container::Property::ClustHttpLoadBalan.catalog_parse(
+            args[:http_load_balancing]
+          )
           @horizontal_pod_autoscaling =
             Google::Container::Property::ClustHorizPodAutos.catalog_parse(
               args[:horizontal_pod_autoscaling]
@@ -120,9 +113,7 @@ module Google
       # A class to manage input to AddonsConfig for cluster.
       class ClusterAddonsConfig
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::ClusterAddonsConfig.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::ClusterAddonsConfig.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

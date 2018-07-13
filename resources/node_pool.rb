@@ -59,32 +59,22 @@ module Google
                name_property: true, desired_state: true
       property :config,
                [Hash, ::Google::Container::Data::NodePoolConfig],
-               coerce: ::Google::Container::Property::NodePoolConfig.coerce,
-               desired_state: true
-      property :initial_node_count,
-               Integer,
-               coerce: ::Google::Container::Property::Integer.coerce,
-               desired_state: true
-      property :version,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::NodePoolConfig.coerce, desired_state: true
+      property :initial_node_count
+               Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
+      property :version
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       property :autoscaling,
                [Hash, ::Google::Container::Data::NodePoolAutosca],
-               coerce: ::Google::Container::Property::NodePoolAutosca.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::NodePoolAutosca.coerce, desired_state: true
       property :management,
                [Hash, ::Google::Container::Data::NodePoolManagem],
-               coerce: ::Google::Container::Property::NodePoolManagem.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::NodePoolManagem.coerce, desired_state: true
       property :cluster,
                [String, ::Google::Container::Data::ClusterNameRef],
-               coerce: ::Google::Container::Property::ClusterNameRef.coerce,
-               desired_state: true
-      property :zone,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::ClusterNameRef.coerce, desired_state: true
+      property :zone
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -108,19 +98,13 @@ module Google
           @current_resource.np_label =
             ::Google::Container::Property::String.api_parse(fetch['name'])
           @current_resource.config =
-            ::Google::Container::Property::NodePoolConfig.api_parse(
-              fetch['config']
-            )
+            ::Google::Container::Property::NodePoolConfig.api_parse(fetch['config'])
           @current_resource.version =
             ::Google::Container::Property::String.api_parse(fetch['version'])
           @current_resource.autoscaling =
-            ::Google::Container::Property::NodePoolAutosca.api_parse(
-              fetch['autoscaling']
-            )
+            ::Google::Container::Property::NodePoolAutosca.api_parse(fetch['autoscaling'])
           @current_resource.management =
-            ::Google::Container::Property::NodePoolManagem.api_parse(
-              fetch['management']
-            )
+            ::Google::Container::Property::NodePoolManagem.api_parse(fetch['management'])
 
           update
         end
@@ -280,8 +264,7 @@ module Google
           URI.join(
             'https://container.googleapis.com/v1/',
             expand_variables(
-              'projects/{{project}}/zones/{{zone}}' \
-              'clusters/{{cluster}}/nodePools/{{name}}',
+              'projects/{{project}}/zones/{{zone}}/clusters/{{cluster}}/nodePools/{{name}}',
               data
             )
           )
@@ -350,10 +333,11 @@ module Google
           op_result = return_if_object(response)
           return if op_result.nil?
           status = ::Google::HashUtils.navigate(op_result, %w[status])
-          wait_done = wait_for_completion(status, op_result, resource)
           fetch_resource(
             resource,
-            URI.parse(::Google::HashUtils.navigate(wait_done,
+            URI.parse(::Google::HashUtils.navigate(wait_for_completion(status,
+                                                                       op_result,
+                                                                       resource),
                                                    %w[targetLink]))
           )
         end

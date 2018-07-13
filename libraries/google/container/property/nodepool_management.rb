@@ -90,14 +90,10 @@ module Google
       # Data is coming from the GCP API
       class NodePoolManagemApi < NodePoolManagem
         def initialize(args)
-          @auto_upgrade =
-            Google::Container::Property::Boolean.api_parse(args['autoUpgrade'])
-          @auto_repair =
-            Google::Container::Property::Boolean.api_parse(args['autoRepair'])
+          @auto_upgrade = Google::Container::Property::Boolean.api_parse(args['autoUpgrade'])
+          @auto_repair = Google::Container::Property::Boolean.api_parse(args['autoRepair'])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.api_parse(
-              args['upgradeOptions']
-            )
+            Google::Container::Property::NodePoolUpgraOptio.api_parse(args['upgradeOptions'])
         end
       end
 
@@ -105,16 +101,10 @@ module Google
       # Data is coming from the Chef catalog
       class NodePoolManagemCatalog < NodePoolManagem
         def initialize(args)
-          @auto_upgrade = Google::Container::Property::Boolean.catalog_parse(
-            args[:auto_upgrade]
-          )
-          @auto_repair = Google::Container::Property::Boolean.catalog_parse(
-            args[:auto_repair]
-          )
+          @auto_upgrade = Google::Container::Property::Boolean.catalog_parse(args[:auto_upgrade])
+          @auto_repair = Google::Container::Property::Boolean.catalog_parse(args[:auto_repair])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.catalog_parse(
-              args[:upgrade_options]
-            )
+            Google::Container::Property::NodePoolUpgraOptio.catalog_parse(args[:upgrade_options])
         end
       end
     end
@@ -123,9 +113,7 @@ module Google
       # A class to manage input to Management for node_pool.
       class NodePoolManagem
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::NodePoolManagem.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::NodePoolManagem.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

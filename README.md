@@ -75,11 +75,9 @@ For complete details of the authentication cookbook, visit the
     A Google Container Engine cluster.
 * [`gcontainer_node_pool`](#gcontainer_node_pool) -
     NodePool contains the name and configuration for a cluster's node pool.
-    Node pools are a set of nodes (i.e. VM's), with a common configuration
-    and
+    Node pools are a set of nodes (i.e. VM's), with a common configuration and
     specification, under the control of the cluster master. They may have a
-    set of Kubernetes labels applied to them, which may be used to
-    reference
+    set of Kubernetes labels applied to them, which may be used to reference
     them during pod scheduling. They may also be resized up or down, to
     accommodate the workload.
 * [`gcontainer_kube_config`](#gcontainer_kube_config) -
@@ -196,8 +194,7 @@ end
   An optional description of this cluster.
 
 * `initial_node_count` -
-  Required. The number of nodes to create in this cluster. You must ensure
-  that
+  Required. The number of nodes to create in this cluster. You must ensure that
   your Compute Engine resource quota is sufficient for this number of
   instances. You must also have available firewall and routes quota. For
   requests, this field should only be used in lieu of a "nodePool"
@@ -309,13 +306,11 @@ end
   the cluster.
 
 * `master_auth/client_certificate`
-  Output only. Base64-encoded public certificate used by clients to
-  authenticate
+  Output only. Base64-encoded public certificate used by clients to authenticate
   to the cluster endpoint.
 
 * `master_auth/client_key`
-  Output only. Base64-encoded private key used by clients to authenticate to
-  the
+  Output only. Base64-encoded private key used by clients to authenticate to the
   cluster endpoint.
 
 * `logging_service` -
@@ -383,8 +378,7 @@ end
   information.
 
 * `initial_cluster_version` -
-  Output only. The software version of the master endpoint and kubelets used
-  in the
+  Output only. The software version of the master endpoint and kubelets used in the
   cluster when it was first created. The version can be upgraded over
   time.
 
@@ -392,8 +386,7 @@ end
   Output only. The current software version of the master endpoint.
 
 * `current_node_version` -
-  Output only. The current version of the node software components. If they
-  are
+  Output only. The current version of the node software components. If they are
   currently at multiple versions because they're in the process of being
   upgraded, this reflects the minimum version of all nodes.
 
@@ -401,13 +394,11 @@ end
   Output only. The time the cluster was created, in RFC3339 text format.
 
 * `node_ipv4_cidr_size` -
-  Output only. The size of the address space on each node for hosting
-  containers.
+  Output only. The size of the address space on each node for hosting containers.
   This is provisioned from within the container_ipv4_cidr range.
 
 * `services_ipv4_cidr` -
-  Output only. The IP address range of the Kubernetes services in this
-  cluster, in
+  Output only. The IP address range of the Kubernetes services in this cluster, in
   CIDR notation (e.g. 1.2.3.4/29). Service addresses are typically put
   in the last /16 from the container CIDR.
 
@@ -415,8 +406,7 @@ end
   Output only. The number of nodes currently in the cluster.
 
 * `expire_time` -
-  Output only. The time the cluster will be automatically deleted in RFC3339
-  text
+  Output only. The time the cluster will be automatically deleted in RFC3339 text
   format.
 
 * `zone` -
@@ -594,8 +584,7 @@ end
   more inforamtion about preemptible VM instances.
 
 * `initial_node_count` -
-  Required. The initial node count for the pool. You must ensure that your
-  Compute
+  Required. The initial node count for the pool. You must ensure that your Compute
   Engine resource quota is sufficient for this number of instances. You
   must also have available firewall and routes quota.
 

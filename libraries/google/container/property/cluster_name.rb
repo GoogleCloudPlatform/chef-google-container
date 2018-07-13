@@ -102,9 +102,7 @@ module Google
       # A class to manage fetching name from a cluster
       class ClusterNameRef
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::ClusterNameRef.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::ClusterNameRef.catalog_parse(x) }
         end
 
         def catalog_parse(value)

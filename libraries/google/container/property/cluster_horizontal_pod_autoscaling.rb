@@ -82,8 +82,7 @@ module Google
       # Data is coming from the GCP API
       class ClustHorizPodAutosApi < ClustHorizPodAutos
         def initialize(args)
-          @disabled =
-            Google::Container::Property::Boolean.api_parse(args['disabled'])
+          @disabled = Google::Container::Property::Boolean.api_parse(args['disabled'])
         end
       end
 
@@ -91,8 +90,7 @@ module Google
       # Data is coming from the Chef catalog
       class ClustHorizPodAutosCatalog < ClustHorizPodAutos
         def initialize(args)
-          @disabled =
-            Google::Container::Property::Boolean.catalog_parse(args[:disabled])
+          @disabled = Google::Container::Property::Boolean.catalog_parse(args[:disabled])
         end
       end
     end
@@ -101,9 +99,7 @@ module Google
       # A class to manage input to HorizontalPodAutoscaling for cluster.
       class ClustHorizPodAutos
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::ClustHorizPodAutos.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::ClustHorizPodAutos.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

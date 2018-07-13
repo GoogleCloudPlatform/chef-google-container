@@ -87,10 +87,7 @@ module Google
           [
             { self: username, other: other.username },
             { self: password, other: other.password },
-            {
-              self: cluster_ca_certificate,
-              other: other.cluster_ca_certificate
-            },
+            { self: cluster_ca_certificate, other: other.cluster_ca_certificate },
             { self: client_certificate, other: other.client_certificate },
             { self: client_key, other: other.client_key }
           ]
@@ -101,19 +98,13 @@ module Google
       # Data is coming from the GCP API
       class ClusterMasterAuthApi < ClusterMasterAuth
         def initialize(args)
-          @username =
-            Google::Container::Property::String.api_parse(args['username'])
-          @password =
-            Google::Container::Property::String.api_parse(args['password'])
+          @username = Google::Container::Property::String.api_parse(args['username'])
+          @password = Google::Container::Property::String.api_parse(args['password'])
           @cluster_ca_certificate =
-            Google::Container::Property::String.api_parse(
-              args['clusterCaCertificate']
-            )
-          @client_certificate = Google::Container::Property::String.api_parse(
-            args['clientCertificate']
-          )
-          @client_key =
-            Google::Container::Property::String.api_parse(args['clientKey'])
+            Google::Container::Property::String.api_parse(args['clusterCaCertificate'])
+          @client_certificate =
+            Google::Container::Property::String.api_parse(args['clientCertificate'])
+          @client_key = Google::Container::Property::String.api_parse(args['clientKey'])
         end
       end
 
@@ -121,20 +112,13 @@ module Google
       # Data is coming from the Chef catalog
       class ClusterMasterAuthCatalog < ClusterMasterAuth
         def initialize(args)
-          @username =
-            Google::Container::Property::String.catalog_parse(args[:username])
-          @password =
-            Google::Container::Property::String.catalog_parse(args[:password])
+          @username = Google::Container::Property::String.catalog_parse(args[:username])
+          @password = Google::Container::Property::String.catalog_parse(args[:password])
           @cluster_ca_certificate =
-            Google::Container::Property::String.catalog_parse(
-              args[:cluster_ca_certificate]
-            )
+            Google::Container::Property::String.catalog_parse(args[:cluster_ca_certificate])
           @client_certificate =
-            Google::Container::Property::String.catalog_parse(
-              args[:client_certificate]
-            )
-          @client_key =
-            Google::Container::Property::String.catalog_parse(args[:client_key])
+            Google::Container::Property::String.catalog_parse(args[:client_certificate])
+          @client_key = Google::Container::Property::String.catalog_parse(args[:client_key])
         end
       end
     end
@@ -143,9 +127,7 @@ module Google
       # A class to manage input to MasterAuth for cluster.
       class ClusterMasterAuth
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::ClusterMasterAuth.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::ClusterMasterAuth.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

@@ -82,8 +82,7 @@ module Google
       # Data is coming from the GCP API
       class ClustHttpLoadBalanApi < ClustHttpLoadBalan
         def initialize(args)
-          @disabled =
-            Google::Container::Property::Boolean.api_parse(args['disabled'])
+          @disabled = Google::Container::Property::Boolean.api_parse(args['disabled'])
         end
       end
 
@@ -91,8 +90,7 @@ module Google
       # Data is coming from the Chef catalog
       class ClustHttpLoadBalanCatalog < ClustHttpLoadBalan
         def initialize(args)
-          @disabled =
-            Google::Container::Property::Boolean.catalog_parse(args[:disabled])
+          @disabled = Google::Container::Property::Boolean.catalog_parse(args[:disabled])
         end
       end
     end
@@ -101,9 +99,7 @@ module Google
       # A class to manage input to HttpLoadBalancing for cluster.
       class ClustHttpLoadBalan
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::ClustHttpLoadBalan.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::ClustHttpLoadBalan.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

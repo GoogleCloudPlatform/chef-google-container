@@ -76,10 +76,7 @@ module Google
 
         def compare_fields(other)
           [
-            {
-              self: auto_upgrade_start_time,
-              other: other.auto_upgrade_start_time
-            },
+            { self: auto_upgrade_start_time, other: other.auto_upgrade_start_time },
             { self: description, other: other.description }
           ]
         end
@@ -90,11 +87,8 @@ module Google
       class NodePoolUpgraOptioApi < NodePoolUpgraOptio
         def initialize(args)
           @auto_upgrade_start_time =
-            Google::Container::Property::Time.api_parse(
-              args['autoUpgradeStartTime']
-            )
-          @description =
-            Google::Container::Property::String.api_parse(args['description'])
+            Google::Container::Property::Time.api_parse(args['autoUpgradeStartTime'])
+          @description = Google::Container::Property::String.api_parse(args['description'])
         end
       end
 
@@ -103,12 +97,8 @@ module Google
       class NodePoolUpgraOptioCatalog < NodePoolUpgraOptio
         def initialize(args)
           @auto_upgrade_start_time =
-            Google::Container::Property::Time.catalog_parse(
-              args[:auto_upgrade_start_time]
-            )
-          @description = Google::Container::Property::String.catalog_parse(
-            args[:description]
-          )
+            Google::Container::Property::Time.catalog_parse(args[:auto_upgrade_start_time])
+          @description = Google::Container::Property::String.catalog_parse(args[:description])
         end
       end
     end
@@ -117,9 +107,7 @@ module Google
       # A class to manage input to UpgradeOptions for node_pool.
       class NodePoolUpgraOptio
         def self.coerce
-          lambda do |x|
-            ::Google::Container::Property::NodePoolUpgraOptio.catalog_parse(x)
-          end
+          ->(x) { ::Google::Container::Property::NodePoolUpgraOptio.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

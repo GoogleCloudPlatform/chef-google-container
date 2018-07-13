@@ -58,92 +58,55 @@ module Google
                String,
                coerce: ::Google::Container::Property::String.coerce,
                name_property: true, desired_state: true
-      property :description,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :initial_node_count,
-               Integer,
-               coerce: ::Google::Container::Property::Integer.coerce,
-               desired_state: true
+      property :description
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :initial_node_count
+               Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
       property :node_config,
                [Hash, ::Google::Container::Data::ClusterNodeConfig],
-               coerce: ::Google::Container::Property::ClusterNodeConfig.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::ClusterNodeConfig.coerce, desired_state: true
       property :master_auth,
                [Hash, ::Google::Container::Data::ClusterMasterAuth],
-               coerce: ::Google::Container::Property::ClusterMasterAuth.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::ClusterMasterAuth.coerce, desired_state: true
       property :logging_service,
                equal_to: %w[logging.googleapis.com none],
-               coerce: ::Google::Container::Property::Enum.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::Enum.coerce, desired_state: true
       property :monitoring_service,
                equal_to: %w[monitoring.googleapis.com none],
-               coerce: ::Google::Container::Property::Enum.coerce,
-               desired_state: true
-      property :network,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :cluster_ipv4_cidr,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
+               coerce: ::Google::Container::Property::Enum.coerce, desired_state: true
+      property :network
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :cluster_ipv4_cidr
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       property :addons_config,
                [Hash, ::Google::Container::Data::ClusterAddonsConfig],
-               coerce: \
-                 ::Google::Container::Property::ClusterAddonsConfig.coerce,
+               coerce: ::Google::Container::Property::ClusterAddonsConfig.coerce,
                desired_state: true
-      property :subnetwork,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
+      property :subnetwork
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       # location is Array of Google::Container::Property::StringArray
-      property :location,
-               Array,
-               coerce: ::Google::Container::Property::StringArray.coerce,
-               desired_state: true
-      property :endpoint,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :initial_cluster_version,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :current_master_version,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :current_node_version,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :create_time,
-               Time,
-               coerce: ::Google::Container::Property::Time.coerce,
-               desired_state: true
-      property :node_ipv4_cidr_size,
-               Integer,
-               coerce: ::Google::Container::Property::Integer.coerce,
-               desired_state: true
-      property :services_ipv4_cidr,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
-      property :current_node_count,
-               Integer,
-               coerce: ::Google::Container::Property::Integer.coerce,
-               desired_state: true
-      property :expire_time,
-               Time,
-               coerce: ::Google::Container::Property::Time.coerce,
-               desired_state: true
-      property :zone,
-               String,
-               coerce: ::Google::Container::Property::String.coerce,
-               desired_state: true
+      property :location
+               Array, coerce: ::Google::Container::Property::StringArray.coerce, desired_state: true
+      property :endpoint
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :initial_cluster_version
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :current_master_version
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :current_node_version
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :create_time
+               Time, coerce: ::Google::Container::Property::Time.coerce, desired_state: true
+      property :node_ipv4_cidr_size
+               Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
+      property :services_ipv4_cidr
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
+      property :current_node_count
+               Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
+      property :expire_time
+               Time, coerce: ::Google::Container::Property::Time.coerce, desired_state: true
+      property :zone
+               String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -172,67 +135,39 @@ module Google
           @current_resource.c_label =
             ::Google::Container::Property::String.api_parse(fetch['name'])
           @current_resource.description =
-            ::Google::Container::Property::String.api_parse(
-              fetch['description']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['description'])
           @current_resource.master_auth =
-            ::Google::Container::Property::ClusterMasterAuth.api_parse(
-              fetch['masterAuth']
-            )
+            ::Google::Container::Property::ClusterMasterAuth.api_parse(fetch['masterAuth'])
           @current_resource.logging_service =
-            ::Google::Container::Property::Enum.api_parse(
-              fetch['loggingService']
-            )
+            ::Google::Container::Property::Enum.api_parse(fetch['loggingService'])
           @current_resource.monitoring_service =
-            ::Google::Container::Property::Enum.api_parse(
-              fetch['monitoringService']
-            )
+            ::Google::Container::Property::Enum.api_parse(fetch['monitoringService'])
           @current_resource.network =
             ::Google::Container::Property::String.api_parse(fetch['network'])
           @current_resource.cluster_ipv4_cidr =
-            ::Google::Container::Property::String.api_parse(
-              fetch['clusterIpv4Cidr']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['clusterIpv4Cidr'])
           @current_resource.addons_config =
-            ::Google::Container::Property::ClusterAddonsConfig.api_parse(
-              fetch['addonsConfig']
-            )
+            ::Google::Container::Property::ClusterAddonsConfig.api_parse(fetch['addonsConfig'])
           @current_resource.subnetwork =
-            ::Google::Container::Property::String.api_parse(
-              fetch['subnetwork']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['subnetwork'])
           @current_resource.location =
-            ::Google::Container::Property::StringArray.api_parse(
-              fetch['location']
-            )
+            ::Google::Container::Property::StringArray.api_parse(fetch['location'])
           @current_resource.endpoint =
             ::Google::Container::Property::String.api_parse(fetch['endpoint'])
           @current_resource.initial_cluster_version =
-            ::Google::Container::Property::String.api_parse(
-              fetch['initialClusterVersion']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['initialClusterVersion'])
           @current_resource.current_master_version =
-            ::Google::Container::Property::String.api_parse(
-              fetch['currentMasterVersion']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['currentMasterVersion'])
           @current_resource.current_node_version =
-            ::Google::Container::Property::String.api_parse(
-              fetch['currentNodeVersion']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['currentNodeVersion'])
           @current_resource.create_time =
             ::Google::Container::Property::Time.api_parse(fetch['createTime'])
           @current_resource.node_ipv4_cidr_size =
-            ::Google::Container::Property::Integer.api_parse(
-              fetch['nodeIpv4CidrSize']
-            )
+            ::Google::Container::Property::Integer.api_parse(fetch['nodeIpv4CidrSize'])
           @current_resource.services_ipv4_cidr =
-            ::Google::Container::Property::String.api_parse(
-              fetch['servicesIpv4Cidr']
-            )
+            ::Google::Container::Property::String.api_parse(fetch['servicesIpv4Cidr'])
           @current_resource.current_node_count =
-            ::Google::Container::Property::Integer.api_parse(
-              fetch['currentNodeCount']
-            )
+            ::Google::Container::Property::Integer.api_parse(fetch['currentNodeCount'])
           @current_resource.expire_time =
             ::Google::Container::Property::Time.api_parse(fetch['expireTime'])
           @new_resource.__fetched = fetch
@@ -494,10 +429,11 @@ module Google
           op_result = return_if_object(response)
           return if op_result.nil?
           status = ::Google::HashUtils.navigate(op_result, %w[status])
-          wait_done = wait_for_completion(status, op_result, resource)
           fetch_resource(
             resource,
-            URI.parse(::Google::HashUtils.navigate(wait_done,
+            URI.parse(::Google::HashUtils.navigate(wait_for_completion(status,
+                                                                       op_result,
+                                                                       resource),
                                                    %w[targetLink]))
           )
         end
