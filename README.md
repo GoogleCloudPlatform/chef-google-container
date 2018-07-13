@@ -19,34 +19,6 @@ This cookbook was tested on the following operating systems:
 * openSUSE 13
 * Windows Server 2008 R2, 2012 R2, 2012 R2 Core, 2016 R2, 2016 R2 Core
 
-## Example
-
-```ruby
-gauth_credential 'mycred' do
-  action :serviceaccount
-  path ENV['CRED_PATH'] # e.g. '/path/to/my_account.json'
-  scopes [
-    'https://www.googleapis.com/auth/cloud-platform'
-  ]
-end
-
-gcontainer_cluster 'test-cluster' do
-  action :create
-  zone 'us-central1-a'
-  project ENV['PROJECT'] # ex: 'my-test-project'
-  credential 'mycred'
-end
-
-gcontainer_node_pool 'web-servers' do
-  action :create
-  initial_node_count 4
-  cluster 'test-cluster'
-  zone 'us-central1-a'
-  project ENV['PROJECT'] # ex: 'my-test-project'
-  credential 'mycred'
-end
-```
-
 ## Credentials
 
 All Google Cloud Platform cookbooks use an unified authentication mechanism,
