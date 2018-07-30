@@ -60,9 +60,9 @@ module Google
       property :config,
                [Hash, ::Google::Container::Data::NodePoolConfig],
                coerce: ::Google::Container::Property::NodePoolConfig.coerce, desired_state: true
-      property :initial_node_count
+      property :initial_node_count,
                Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
-      property :version
+      property :version,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       property :autoscaling,
                [Hash, ::Google::Container::Data::NodePoolAutosca],
@@ -73,7 +73,7 @@ module Google
       property :cluster,
                [String, ::Google::Container::Data::ClusterNameRef],
                coerce: ::Google::Container::Property::ClusterNameRef.coerce, desired_state: true
-      property :zone
+      property :zone,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
