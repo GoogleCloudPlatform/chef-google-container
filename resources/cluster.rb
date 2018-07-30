@@ -58,9 +58,9 @@ module Google
                String,
                coerce: ::Google::Container::Property::String.coerce,
                name_property: true, desired_state: true
-      property :description
+      property :description,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :initial_node_count
+      property :initial_node_count,
                Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
       property :node_config,
                [Hash, ::Google::Container::Data::ClusterNodeConfig],
@@ -74,38 +74,38 @@ module Google
       property :monitoring_service,
                equal_to: %w[monitoring.googleapis.com none],
                coerce: ::Google::Container::Property::Enum.coerce, desired_state: true
-      property :network
+      property :network,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :cluster_ipv4_cidr
+      property :cluster_ipv4_cidr,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       property :addons_config,
                [Hash, ::Google::Container::Data::ClusterAddonsConfig],
                coerce: ::Google::Container::Property::ClusterAddonsConfig.coerce,
                desired_state: true
-      property :subnetwork
+      property :subnetwork,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       # location is Array of Google::Container::Property::StringArray
-      property :location
+      property :location,
                Array, coerce: ::Google::Container::Property::StringArray.coerce, desired_state: true
-      property :endpoint
+      property :endpoint,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :initial_cluster_version
+      property :initial_cluster_version,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :current_master_version
+      property :current_master_version,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :current_node_version
+      property :current_node_version,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :create_time
+      property :create_time,
                Time, coerce: ::Google::Container::Property::Time.coerce, desired_state: true
-      property :node_ipv4_cidr_size
+      property :node_ipv4_cidr_size,
                Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
-      property :services_ipv4_cidr
+      property :services_ipv4_cidr,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
-      property :current_node_count
+      property :current_node_count,
                Integer, coerce: ::Google::Container::Property::Integer.coerce, desired_state: true
-      property :expire_time
+      property :expire_time,
                Time, coerce: ::Google::Container::Property::Time.coerce, desired_state: true
-      property :zone
+      property :zone,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
