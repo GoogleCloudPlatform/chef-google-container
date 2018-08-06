@@ -29,7 +29,7 @@ module Google
   module Container
     module Data
       # A class to manage data for Management for node_pool.
-      class NodePoolManagem
+      class NodePoolManagement
         include Comparable
 
         attr_reader :auto_upgrade
@@ -53,7 +53,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? NodePoolManagem
+          return false unless other.is_a? NodePoolManagement
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -62,7 +62,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? NodePoolManagem
+          return false unless other.is_a? NodePoolManagement
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -86,48 +86,49 @@ module Google
         end
       end
 
-      # Manages a NodePoolManagem nested object
+      # Manages a NodePoolManagement nested object
       # Data is coming from the GCP API
-      class NodePoolManagemApi < NodePoolManagem
+      class NodePoolManagementApi < NodePoolManagement
         def initialize(args)
           @auto_upgrade = Google::Container::Property::Boolean.api_parse(args['autoUpgrade'])
           @auto_repair = Google::Container::Property::Boolean.api_parse(args['autoRepair'])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.api_parse(args['upgradeOptions'])
+            Google::Container::Property::NodePoolUpgradeOptions.api_parse(args['upgradeOptions'])
         end
       end
 
-      # Manages a NodePoolManagem nested object
+      # Manages a NodePoolManagement nested object
       # Data is coming from the Chef catalog
-      class NodePoolManagemCatalog < NodePoolManagem
+      class NodePoolManagementCatalog < NodePoolManagement
         def initialize(args)
           @auto_upgrade = Google::Container::Property::Boolean.catalog_parse(args[:auto_upgrade])
           @auto_repair = Google::Container::Property::Boolean.catalog_parse(args[:auto_repair])
-          @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.catalog_parse(args[:upgrade_options])
+          @upgrade_options = Google::Container::Property::NodePoolUpgradeOptions.catalog_parse(
+            args[:upgrade_options]
+          )
         end
       end
     end
 
     module Property
       # A class to manage input to Management for node_pool.
-      class NodePoolManagem
+      class NodePoolManagement
         def self.coerce
-          ->(x) { ::Google::Container::Property::NodePoolManagem.catalog_parse(x) }
+          ->(x) { ::Google::Container::Property::NodePoolManagement.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::NodePoolManagem
-          Data::NodePoolManagemCatalog.new(value)
+          return value if value.is_a? Data::NodePoolManagement
+          Data::NodePoolManagementCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::NodePoolManagem
-          Data::NodePoolManagemApi.new(value)
+          return value if value.is_a? Data::NodePoolManagement
+          Data::NodePoolManagementApi.new(value)
         end
       end
     end

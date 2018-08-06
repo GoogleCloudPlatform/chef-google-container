@@ -29,7 +29,7 @@ module Google
   module Container
     module Data
       # A class to manage data for Autoscaling for node_pool.
-      class NodePoolAutosca
+      class NodePoolAutoscaling
         include Comparable
 
         attr_reader :enabled
@@ -53,7 +53,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? NodePoolAutosca
+          return false unless other.is_a? NodePoolAutoscaling
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -62,7 +62,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? NodePoolAutosca
+          return false unless other.is_a? NodePoolAutoscaling
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -86,9 +86,9 @@ module Google
         end
       end
 
-      # Manages a NodePoolAutosca nested object
+      # Manages a NodePoolAutoscaling nested object
       # Data is coming from the GCP API
-      class NodePoolAutoscaApi < NodePoolAutosca
+      class NodePoolAutoscalingApi < NodePoolAutoscaling
         def initialize(args)
           @enabled = Google::Container::Property::Boolean.api_parse(args['enabled'])
           @min_node_count = Google::Container::Property::Integer.api_parse(args['minNodeCount'])
@@ -96,9 +96,9 @@ module Google
         end
       end
 
-      # Manages a NodePoolAutosca nested object
+      # Manages a NodePoolAutoscaling nested object
       # Data is coming from the Chef catalog
-      class NodePoolAutoscaCatalog < NodePoolAutosca
+      class NodePoolAutoscalingCatalog < NodePoolAutoscaling
         def initialize(args)
           @enabled = Google::Container::Property::Boolean.catalog_parse(args[:enabled])
           @min_node_count =
@@ -111,23 +111,23 @@ module Google
 
     module Property
       # A class to manage input to Autoscaling for node_pool.
-      class NodePoolAutosca
+      class NodePoolAutoscaling
         def self.coerce
-          ->(x) { ::Google::Container::Property::NodePoolAutosca.catalog_parse(x) }
+          ->(x) { ::Google::Container::Property::NodePoolAutoscaling.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::NodePoolAutosca
-          Data::NodePoolAutoscaCatalog.new(value)
+          return value if value.is_a? Data::NodePoolAutoscaling
+          Data::NodePoolAutoscalingCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::NodePoolAutosca
-          Data::NodePoolAutoscaApi.new(value)
+          return value if value.is_a? Data::NodePoolAutoscaling
+          Data::NodePoolAutoscalingApi.new(value)
         end
       end
     end
