@@ -29,7 +29,7 @@ module Google
   module Container
     module Data
       # A class to manage data for HorizontalPodAutoscaling for cluster.
-      class ClustHorizPodAutos
+      class ClusterHorizontalPodAutoscaling
         include Comparable
 
         attr_reader :disabled
@@ -47,7 +47,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? ClustHorizPodAutos
+          return false unless other.is_a? ClusterHorizontalPodAutoscaling
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -56,7 +56,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? ClustHorizPodAutos
+          return false unless other.is_a? ClusterHorizontalPodAutoscaling
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -78,17 +78,17 @@ module Google
         end
       end
 
-      # Manages a ClustHorizPodAutos nested object
+      # Manages a ClusterHorizontalPodAutoscaling nested object
       # Data is coming from the GCP API
-      class ClustHorizPodAutosApi < ClustHorizPodAutos
+      class ClusterHorizontalPodAutoscalingApi < ClusterHorizontalPodAutoscaling
         def initialize(args)
           @disabled = Google::Container::Property::Boolean.api_parse(args['disabled'])
         end
       end
 
-      # Manages a ClustHorizPodAutos nested object
+      # Manages a ClusterHorizontalPodAutoscaling nested object
       # Data is coming from the Chef catalog
-      class ClustHorizPodAutosCatalog < ClustHorizPodAutos
+      class ClusterHorizontalPodAutoscalingCatalog < ClusterHorizontalPodAutoscaling
         def initialize(args)
           @disabled = Google::Container::Property::Boolean.catalog_parse(args[:disabled])
         end
@@ -97,23 +97,23 @@ module Google
 
     module Property
       # A class to manage input to HorizontalPodAutoscaling for cluster.
-      class ClustHorizPodAutos
+      class ClusterHorizontalPodAutoscaling
         def self.coerce
-          ->(x) { ::Google::Container::Property::ClustHorizPodAutos.catalog_parse(x) }
+          ->(x) { ::Google::Container::Property::ClusterHorizontalPodAutoscaling.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::ClustHorizPodAutos
-          Data::ClustHorizPodAutosCatalog.new(value)
+          return value if value.is_a? Data::ClusterHorizontalPodAutoscaling
+          Data::ClusterHorizontalPodAutoscalingCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::ClustHorizPodAutos
-          Data::ClustHorizPodAutosApi.new(value)
+          return value if value.is_a? Data::ClusterHorizontalPodAutoscaling
+          Data::ClusterHorizontalPodAutoscalingApi.new(value)
         end
       end
     end

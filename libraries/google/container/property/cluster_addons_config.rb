@@ -86,11 +86,13 @@ module Google
       # Data is coming from the GCP API
       class ClusterAddonsConfigApi < ClusterAddonsConfig
         def initialize(args)
-          @http_load_balancing =
-            Google::Container::Property::ClustHttpLoadBalan.api_parse(args['httpLoadBalancing'])
-          @horizontal_pod_autoscaling = Google::Container::Property::ClustHorizPodAutos.api_parse(
-            args['horizontalPodAutoscaling']
+          @http_load_balancing = Google::Container::Property::ClusterHttpLoadBalancing.api_parse(
+            args['httpLoadBalancing']
           )
+          @horizontal_pod_autoscaling =
+            Google::Container::Property::ClusterHorizontalPodAutoscaling.api_parse(
+              args['horizontalPodAutoscaling']
+            )
         end
       end
 
@@ -98,11 +100,12 @@ module Google
       # Data is coming from the Chef catalog
       class ClusterAddonsConfigCatalog < ClusterAddonsConfig
         def initialize(args)
-          @http_load_balancing = Google::Container::Property::ClustHttpLoadBalan.catalog_parse(
-            args[:http_load_balancing]
-          )
+          @http_load_balancing =
+            Google::Container::Property::ClusterHttpLoadBalancing.catalog_parse(
+              args[:http_load_balancing]
+            )
           @horizontal_pod_autoscaling =
-            Google::Container::Property::ClustHorizPodAutos.catalog_parse(
+            Google::Container::Property::ClusterHorizontalPodAutoscaling.catalog_parse(
               args[:horizontal_pod_autoscaling]
             )
         end

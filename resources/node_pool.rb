@@ -65,11 +65,12 @@ module Google
       property :version,
                String, coerce: ::Google::Container::Property::String.coerce, desired_state: true
       property :autoscaling,
-               [Hash, ::Google::Container::Data::NodePoolAutosca],
-               coerce: ::Google::Container::Property::NodePoolAutosca.coerce, desired_state: true
+               [Hash, ::Google::Container::Data::NodePoolAutoscaling],
+               coerce: ::Google::Container::Property::NodePoolAutoscaling.coerce,
+               desired_state: true
       property :management,
-               [Hash, ::Google::Container::Data::NodePoolManagem],
-               coerce: ::Google::Container::Property::NodePoolManagem.coerce, desired_state: true
+               [Hash, ::Google::Container::Data::NodePoolManagement],
+               coerce: ::Google::Container::Property::NodePoolManagement.coerce, desired_state: true
       property :cluster,
                [String, ::Google::Container::Data::ClusterNameRef],
                coerce: ::Google::Container::Property::ClusterNameRef.coerce, desired_state: true
@@ -102,9 +103,9 @@ module Google
           @current_resource.version =
             ::Google::Container::Property::String.api_parse(fetch['version'])
           @current_resource.autoscaling =
-            ::Google::Container::Property::NodePoolAutosca.api_parse(fetch['autoscaling'])
+            ::Google::Container::Property::NodePoolAutoscaling.api_parse(fetch['autoscaling'])
           @current_resource.management =
-            ::Google::Container::Property::NodePoolManagem.api_parse(fetch['management'])
+            ::Google::Container::Property::NodePoolManagement.api_parse(fetch['management'])
 
           update
         end

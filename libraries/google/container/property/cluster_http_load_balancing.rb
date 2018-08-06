@@ -29,7 +29,7 @@ module Google
   module Container
     module Data
       # A class to manage data for HttpLoadBalancing for cluster.
-      class ClustHttpLoadBalan
+      class ClusterHttpLoadBalancing
         include Comparable
 
         attr_reader :disabled
@@ -47,7 +47,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? ClustHttpLoadBalan
+          return false unless other.is_a? ClusterHttpLoadBalancing
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -56,7 +56,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? ClustHttpLoadBalan
+          return false unless other.is_a? ClusterHttpLoadBalancing
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -78,17 +78,17 @@ module Google
         end
       end
 
-      # Manages a ClustHttpLoadBalan nested object
+      # Manages a ClusterHttpLoadBalancing nested object
       # Data is coming from the GCP API
-      class ClustHttpLoadBalanApi < ClustHttpLoadBalan
+      class ClusterHttpLoadBalancingApi < ClusterHttpLoadBalancing
         def initialize(args)
           @disabled = Google::Container::Property::Boolean.api_parse(args['disabled'])
         end
       end
 
-      # Manages a ClustHttpLoadBalan nested object
+      # Manages a ClusterHttpLoadBalancing nested object
       # Data is coming from the Chef catalog
-      class ClustHttpLoadBalanCatalog < ClustHttpLoadBalan
+      class ClusterHttpLoadBalancingCatalog < ClusterHttpLoadBalancing
         def initialize(args)
           @disabled = Google::Container::Property::Boolean.catalog_parse(args[:disabled])
         end
@@ -97,23 +97,23 @@ module Google
 
     module Property
       # A class to manage input to HttpLoadBalancing for cluster.
-      class ClustHttpLoadBalan
+      class ClusterHttpLoadBalancing
         def self.coerce
-          ->(x) { ::Google::Container::Property::ClustHttpLoadBalan.catalog_parse(x) }
+          ->(x) { ::Google::Container::Property::ClusterHttpLoadBalancing.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::ClustHttpLoadBalan
-          Data::ClustHttpLoadBalanCatalog.new(value)
+          return value if value.is_a? Data::ClusterHttpLoadBalancing
+          Data::ClusterHttpLoadBalancingCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::ClustHttpLoadBalan
-          Data::ClustHttpLoadBalanApi.new(value)
+          return value if value.is_a? Data::ClusterHttpLoadBalancing
+          Data::ClusterHttpLoadBalancingApi.new(value)
         end
       end
     end
