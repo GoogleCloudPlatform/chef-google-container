@@ -86,6 +86,7 @@ chef-codegen:
   * .gitignore
   * .rubocop.yml
   * Berksfile
+  * CHANGELOG.md
   * chefignore
   * CONTRIBUTING.md
   * Gemfile

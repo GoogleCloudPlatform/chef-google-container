@@ -34,8 +34,8 @@ description 'A Chef cookbook to manage Google Container Engine resources'
 long_description '
     This cookbook provides the built-in types and services for Chef to manage
     Google Container Engine resources, as native Chef types.'
-version '0.1.0'
-depends 'google-gauth', '< 0.2.0'
+version '0.2.0'
+depends 'google-gauth', '< 0.3.0'
 # rubocop:disable Metrics/LineLength
 issues_url 'https://github.com/GoogleCloudPlatform/chef-google-container/issues' \
   if respond_to?(:issues_url)
