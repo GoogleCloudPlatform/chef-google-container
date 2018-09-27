@@ -123,9 +123,9 @@ module Google
           @disk_size_gb = Google::Container::Property::Integer.api_parse(args['diskSizeGb'])
           @oauth_scopes = Google::Container::Property::StringArray.api_parse(args['oauthScopes'])
           @service_account = Google::Container::Property::String.api_parse(args['serviceAccount'])
-          @metadata = Google::Container::Property::NameValues.api_parse(args['metadata'])
+          @metadata = Google::Container::Property::KeyValuePairs.api_parse(args['metadata'])
           @image_type = Google::Container::Property::String.api_parse(args['imageType'])
-          @labels = Google::Container::Property::NameValues.api_parse(args['labels'])
+          @labels = Google::Container::Property::KeyValuePairs.api_parse(args['labels'])
           @local_ssd_count = Google::Container::Property::Integer.api_parse(args['localSsdCount'])
           @tags = Google::Container::Property::StringArray.api_parse(args['tags'])
           @preemptible = Google::Container::Property::Boolean.api_parse(args['preemptible'])
@@ -144,9 +144,9 @@ module Google
             Google::Container::Property::StringArray.catalog_parse(args[:oauth_scopes])
           @service_account =
             Google::Container::Property::String.catalog_parse(args[:service_account])
-          @metadata = Google::Container::Property::NameValues.catalog_parse(args[:metadata])
+          @metadata = Google::Container::Property::KeyValuePairs.catalog_parse(args[:metadata])
           @image_type = Google::Container::Property::String.catalog_parse(args[:image_type])
-          @labels = Google::Container::Property::NameValues.catalog_parse(args[:labels])
+          @labels = Google::Container::Property::KeyValuePairs.catalog_parse(args[:labels])
           @local_ssd_count =
             Google::Container::Property::Integer.catalog_parse(args[:local_ssd_count])
           @tags = Google::Container::Property::StringArray.catalog_parse(args[:tags])

@@ -106,7 +106,7 @@ chef-codegen:
   * libraries/google/container/property/cluster_node_config.rb
   * libraries/google/container/property/enum.rb
   * libraries/google/container/property/integer.rb
-  * libraries/google/container/property/namevalues.rb
+  * libraries/google/container/property/keyvaluepairs.rb
   * libraries/google/container/property/nodepool_autoscaling.rb
   * libraries/google/container/property/nodepool_config.rb
   * libraries/google/container/property/nodepool_management.rb

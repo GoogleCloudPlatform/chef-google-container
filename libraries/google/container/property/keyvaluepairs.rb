@@ -28,10 +28,10 @@
 module Google
   module Container
     module Property
-      # A class to handle serialization of NameValues items.
-      class NameValues
+      # A class to handle serialization of KeyValuePairs items.
+      class KeyValuePairs
         def self.coerce
-          ->(x) { ::Google::Container::Property::NameValues.catalog_parse(x) }
+          ->(x) { ::Google::Container::Property::KeyValuePairs.catalog_parse(x) }
         end
 
         def self.api_parse(value)
